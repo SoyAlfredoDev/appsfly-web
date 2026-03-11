@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+:root {
+  /* Brand Colors */
+  --color-primary: #01c676;
+  --color-secondary: #094fd1;
+  --color-dark: #021f41;
+
+  /* UI Colors */
+  --color-background: #f5f7fa;
+  --color-surface: #ffffff;
+  --color-border: #e5e7eb;
+
+  /* Text */
+  --color-text-primary: #021f41;
+  --color-text-secondary: #4b5563;
+}
