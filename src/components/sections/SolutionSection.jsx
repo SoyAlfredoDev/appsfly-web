@@ -26,8 +26,14 @@ export default function SolutionSection() {
   ];
 
   return (
-    <section id="solutions" className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="solutions" className="relative overflow-hidden py-24 bg-white">
+      {/* Decorative gradients */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-[-80px] top-16 h-72 w-72 rounded-full bg-primary/8 blur-3xl" />
+        <div className="absolute right-[-60px] bottom-10 h-64 w-64 rounded-full bg-secondary/8 blur-3xl" />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 28 }}

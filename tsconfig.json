@@ -29,8 +29,9 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts",
-    "src/components/sections/ProblemSection.jsx",
-    "src/components/sections/SolutionSection.jsx"
+    "src/components/sections/ProblemSection.tsx",
+    "src/components/sections/SolutionSection.jsx",
+    "src/components/sections/ServicesSection.jsx"
   ],
   "exclude": ["node_modules"]
 }
