@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Globe, ShoppingCart, Bot } from "lucide-react";
+import Image from "next/image";
 
 const services = [
   {
@@ -18,6 +19,8 @@ const services = [
     ],
     buttonText: "Más información",
     icon: Globe,
+    img: "/images/services-landing-page.jpg",
+    imgAlt: "Tienda en línea",
   },
   {
     id: 2,
@@ -32,6 +35,8 @@ const services = [
     ],
     buttonText: "Más información",
     icon: ShoppingCart,
+    img: "/images/services-web-store.png",
+    imgAlt: "Tienda en línea",
   },
   {
     id: 3,
@@ -46,6 +51,8 @@ const services = [
     ],
     buttonText: "Más información",
     icon: Bot,
+    img: "/images/services-whatsapp.jpg",
+    imgAlt: "WhatsApp",
   },
 ];
 
@@ -142,15 +149,13 @@ export default function ServicesSection() {
                   <div className="relative overflow-hidden rounded-[28px] border border-border bg-white shadow-xl">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
                     <div className="relative aspect-[16/10] w-full flex flex-col items-center justify-center bg-gradient-to-br from-background via-white to-background">
-                      <div className="mb-3 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
-                        <Icon className="h-8 w-8 text-primary/60" />
-                      </div>
-                      <p className="text-sm font-medium text-dark/40">
-                        IMAGE_PLACEHOLDER
-                      </p>
-                      <p className="mt-1 text-xs text-dark/30">
-                        Recommended size: 1200×800
-                      </p>
+                      <Image
+                        src={service.img}
+                        alt={service.imgAlt}
+                        width={1000}
+                        height={1000}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   </div>
                 </div>

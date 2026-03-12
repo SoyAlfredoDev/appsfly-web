@@ -2,7 +2,17 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  Instagram,
+  Linkedin,
+  Facebook,
+  Twitter,
+  Mail,
+  MessageCircle,
+  Building2,
+  FileBadge,
+} from "lucide-react";
 
 const footerLinks = [
   { name: "Inicio", href: "#home" },
@@ -36,14 +46,56 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <Link href="#home" onClick={(e) => handleNavClick(e, "#home")}>
-              <span className="text-2xl font-bold tracking-tight">
-                Apps<span className="text-primary">Fly</span>
-              </span>
+              <Image
+                src="/images/logo-appsfly.png"
+                alt="Logo"
+                width={200}
+                height={200}
+                className="my-[-30px]"
+              />
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
               Soluciones digitales pensadas para ayudar a tu negocio a crecer,
               vender más y atender mejor.
             </p>
+
+            <div>
+              <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/40">
+                Contacto
+              </h4>
+
+              <div className="space-y-4 text-sm text-white/60">
+                <div className="flex items-start gap-3">
+                  <Building2 className="mt-0.5 h-4 w-4 text-primary" />
+                  <span>Servicios Tecnológicos Appsfly SpA</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <FileBadge className="mt-0.5 h-4 w-4 text-primary" />
+                  <span>RUT: 77.719.288-4</span>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <Mail className="mt-0.5 h-4 w-4 text-primary" />
+                  <a
+                    href="mailto:comercial@appsfly.cl"
+                    className="transition hover:text-white"
+                  >
+                    comercial@appsfly.cl
+                  </a>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <MessageCircle className="mt-0.5 h-4 w-4 text-primary" />
+                  <a
+                    href="https://wa.me/56921629730"
+                    target="_blank"
+                    className="transition hover:text-white"
+                  >
+                    +56 9 2162 9730
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Quick Links */}
@@ -71,18 +123,67 @@ export default function Footer() {
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/40">
               ¿Listo para empezar?
             </h4>
-            <p className="mb-6 text-sm text-white/60 leading-relaxed">
+
+            <p className="mb-6 text-sm leading-relaxed text-white/60">
               Cuéntanos tu proyecto y te ayudamos a encontrar la mejor solución
               digital para tu negocio.
             </p>
+
+            {/* CTA */}
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, "#contact")}
-              className="group inline-flex items-center gap-2 rounded-2xl bg-primary px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/20"
+              className="group mb-8 inline-flex items-center gap-2 rounded-2xl bg-primary px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/20"
             >
               Hablemos
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
+
+            {/* Suscripción */}
+            <div className="mb-6">
+              <p className="mb-3 text-xs uppercase tracking-wider text-white/40">
+                Suscríbete
+              </p>
+
+              <form className="flex overflow-hidden rounded-xl border border-white/10 bg-white/5 backdrop-blur">
+                <input
+                  type="email"
+                  placeholder="Tu email"
+                  className="w-full bg-transparent px-4 py-2 text-sm text-white placeholder:text-white/40 focus:outline-none"
+                />
+                <button
+                  type="submit"
+                  className="bg-primary px-4 text-sm font-semibold text-white transition hover:bg-secondary"
+                >
+                  OK
+                </button>
+              </form>
+            </div>
+
+            {/* Redes sociales */}
+            <div>
+              <p className="mb-3 text-xs uppercase tracking-wider text-white/40">
+                Síguenos
+              </p>
+
+              <div className="flex items-center gap-3">
+                <Link
+                  href="https://www.instagram.com/appsfly.cl/"
+                  target="_blank"
+                  className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5 text-white/70 transition hover:bg-primary hover:text-white"
+                >
+                  <Instagram className="h-4 w-4" />
+                </Link>
+
+                <Link
+                  href="https://www.facebook.com/profile.php?id=61585307100875"
+                  target="_blank"
+                  className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5 text-white/70 transition hover:bg-primary hover:text-white"
+                >
+                  <Facebook className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
 

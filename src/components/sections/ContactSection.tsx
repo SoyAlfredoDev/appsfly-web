@@ -118,22 +118,6 @@ export default function ContactSection() {
                   className="w-full rounded-2xl border border-border bg-white px-4 py-3 text-dark outline-none transition focus:border-primary"
                 />
               </div>
-
-              <div>
-                <label
-                  htmlFor="business"
-                  className="mb-2 block text-sm font-medium text-dark"
-                >
-                  Empresa o negocio
-                </label>
-                <input
-                  id="business"
-                  type="text"
-                  placeholder="Nombre de tu negocio"
-                  className="w-full rounded-2xl border border-border bg-white px-4 py-3 text-dark outline-none transition focus:border-primary"
-                />
-              </div>
-
               <div>
                 <label
                   htmlFor="service"
