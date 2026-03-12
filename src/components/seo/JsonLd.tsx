@@ -20,7 +20,7 @@ export default function JsonLd() {
       telephone: "+56921629730",
       contactType: "sales",
       availableLanguage: ["Spanish"],
-      areaServed: ["CL", "MX", "CO", "AR", "PE"],
+      areaServed: ["CL", "MX", "CO", "AR", "PE", "VE"],
     },
   };
 

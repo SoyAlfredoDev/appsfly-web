@@ -2,6 +2,9 @@
 
 import { motion } from "framer-motion";
 import { Mail, MessageCircle, Send } from "lucide-react";
+import { sendEmail } from "@/lib/email/sendEmail";
+import { contactRequestEmailTemplate } from "@/emails/contactRequestEmailTemplate";
+import { useState } from "react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -9,6 +12,65 @@ const fadeUp = {
 };
 
 export default function ContactSection() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    service: "",
+    contactMethod: "",
+    message: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // Evita que la página se recargue
+    setIsSubmitting(true);
+
+    try {
+      // Generamos el HTML usando el template
+      const htmlContent = contactRequestEmailTemplate({
+        name: formData.name,
+        email: formData.email,
+        service: formData.service,
+        contactMethod: formData.contactMethod,
+        message: formData.message,
+      });
+
+      // Enviamos el correo
+      await sendEmail({
+        to: "contacto@appsfly.cl",
+        subject: "Nueva solicitud de contacto desde AppsFly.cl",
+        html: htmlContent,
+        replyTo: formData.email,
+        text: formData.message,
+      });
+
+      alert("Mensaje enviado correctamente");
+
+      // Limpiamos el formulario
+      setFormData({
+        name: "",
+        email: "",
+        service: "",
+        contactMethod: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Error al enviar el mensaje:", error);
+      alert("Error al enviar el mensaje. Por favor, intenta nuevamente.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section
       id="contact"
@@ -89,7 +151,8 @@ export default function ContactSection() {
             transition={{ duration: 0.65 }}
             className="rounded-[28px] border border-border bg-white p-8 shadow-xl"
           >
-            <form className="space-y-5">
+            {/* Movimos el onSubmit a la etiqueta form */}
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label
                   htmlFor="name"
@@ -99,6 +162,10 @@ export default function ContactSection() {
                 </label>
                 <input
                   id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
                   type="text"
                   placeholder="Tu nombre"
                   className="w-full rounded-2xl border border-border bg-white px-4 py-3 text-dark outline-none transition focus:border-primary"
@@ -114,11 +181,16 @@ export default function ContactSection() {
                 </label>
                 <input
                   id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
                   type="email"
                   placeholder="tunombre@email.com"
                   className="w-full rounded-2xl border border-border bg-white px-4 py-3 text-dark outline-none transition focus:border-primary"
                 />
               </div>
+
               <div>
                 <label
                   htmlFor="service"
@@ -128,8 +200,11 @@ export default function ContactSection() {
                 </label>
                 <select
                   id="service"
+                  name="service"
+                  value={formData.service}
+                  onChange={handleChange}
+                  required
                   className="w-full rounded-2xl border border-border bg-white px-4 py-3 text-dark outline-none transition focus:border-primary"
-                  defaultValue=""
                 >
                   <option value="" disabled>
                     Selecciona una opción
@@ -152,8 +227,11 @@ export default function ContactSection() {
                 </label>
                 <select
                   id="contact-method"
+                  name="contactMethod"
+                  value={formData.contactMethod}
+                  onChange={handleChange}
+                  required
                   className="w-full rounded-2xl border border-border bg-white px-4 py-3 text-dark outline-none transition focus:border-primary"
-                  defaultValue=""
                 >
                   <option value="" disabled>
                     Selecciona una opción
@@ -172,6 +250,10 @@ export default function ContactSection() {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
                   rows={5}
                   placeholder="Describe lo que necesitas, tus objetivos o cualquier detalle importante."
                   className="w-full rounded-2xl border border-border bg-white px-4 py-3 text-dark outline-none transition focus:border-primary"
@@ -180,10 +262,13 @@ export default function ContactSection() {
 
               <button
                 type="submit"
-                className="group inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+                disabled={isSubmitting}
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-70 disabled:hover:translate-y-0"
               >
-                Enviar solicitud
-                <Send className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                {isSubmitting ? "Enviando..." : "Enviar solicitud"}
+                {!isSubmitting && (
+                  <Send className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                )}
               </button>
 
               <p className="text-center text-sm text-gray-500">
