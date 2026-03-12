@@ -28,6 +28,7 @@ export default function ProblemSection() {
   return (
     <section
       id="problem"
+      aria-label="Problemas comunes de presencia digital"
       className="relative overflow-hidden py-24 bg-background"
     >
       {/* Decorative gradients */}
@@ -45,12 +46,13 @@ export default function ProblemSection() {
           viewport={{ once: true }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <span className="mb-4 inline-flex items-center rounded-full bg-red-50 text-red-500 px-4 py-1.5 text-sm font-medium">
+          <p className="mb-4 inline-flex items-center rounded-full bg-red-50 text-red-500 px-4 py-1.5 text-sm font-medium">
             ¿Te identificas?
-          </span>
+          </p>
 
           <h2 className="text-3xl md:text-4xl font-bold text-dark mb-4">
-            Tu negocio podría estar perdiendo clientes en internet
+            Tu negocio podría estar perdiendo clientes por falta de presencia
+            digital
           </h2>
 
           <p className="text-lg text-text-secondary leading-relaxed">

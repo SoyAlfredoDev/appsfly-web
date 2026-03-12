@@ -12,6 +12,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
+      aria-label="Contacto — Cotiza tu proyecto web"
       className="relative overflow-hidden bg-background py-24"
     >
       <div className="pointer-events-none absolute inset-0">
@@ -29,12 +30,12 @@ export default function ContactSection() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="mb-4 inline-flex rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
+            <p className="mb-4 inline-flex rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
               Contacto
-            </span>
+            </p>
 
             <h2 className="mb-5 text-3xl font-bold tracking-tight text-dark md:text-4xl">
-              Hablemos de tu proyecto
+              Cotiza tu proyecto web — Hablemos
             </h2>
 
             <p className="mb-8 max-w-xl text-lg leading-relaxed text-gray-600">

@@ -20,7 +20,7 @@ const services = [
     buttonText: "Más información",
     icon: Globe,
     img: "/images/services-landing-page.jpg",
-    imgAlt: "Tienda en línea",
+    imgAlt: "Desarrollo de sitios web profesionales en Chile — AppsFly",
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ const services = [
     buttonText: "Más información",
     icon: ShoppingCart,
     img: "/images/services-web-store.png",
-    imgAlt: "Tienda en línea",
+    imgAlt: "Desarrollo de tiendas online y e-commerce en Chile — AppsFly",
   },
   {
     id: 3,
@@ -52,7 +52,7 @@ const services = [
     buttonText: "Más información",
     icon: Bot,
     img: "/images/services-whatsapp.jpg",
-    imgAlt: "WhatsApp",
+    imgAlt: "Automatización de WhatsApp para negocios en Chile — AppsFly",
   },
 ];
 
@@ -65,6 +65,7 @@ export default function ServicesSection() {
   return (
     <section
       id="services"
+      aria-label="Servicios de desarrollo web, e-commerce y automatización"
       className="relative overflow-hidden bg-background py-24"
     >
       <div className="absolute inset-0 pointer-events-none">
@@ -81,13 +82,13 @@ export default function ServicesSection() {
           transition={{ duration: 0.6 }}
           className="mx-auto mb-20 max-w-3xl text-center"
         >
-          <span className="mb-4 inline-flex rounded-full bg-secondary/10 px-4 py-1.5 text-sm font-semibold text-secondary">
-            Servicios
-          </span>
+          <p className="mb-4 inline-flex rounded-full bg-secondary/10 px-4 py-1.5 text-sm font-semibold text-secondary">
+            Nuestros servicios
+          </p>
 
           <h2 className="mb-5 text-3xl font-bold tracking-tight text-dark md:text-4xl">
-            Soluciones digitales pensadas para ayudarte a vender, atender mejor
-            y crecer
+            Desarrollo web, tiendas online y automatización para ayudarte a
+            vender más y crecer
           </h2>
 
           <p className="text-lg leading-relaxed text-text-secondary">
@@ -154,6 +155,7 @@ export default function ServicesSection() {
                         alt={service.imgAlt}
                         width={1000}
                         height={1000}
+                        loading="lazy"
                         className="w-full h-full object-cover"
                       />
                     </div>

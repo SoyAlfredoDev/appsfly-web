@@ -26,7 +26,11 @@ export default function SolutionSection() {
   ];
 
   return (
-    <section id="solutions" className="relative overflow-hidden py-24 bg-white">
+    <section
+      id="solutions"
+      aria-label="Soluciones digitales para tu negocio"
+      className="relative overflow-hidden py-24 bg-white"
+    >
       {/* Decorative gradients */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-[-80px] top-16 h-72 w-72 rounded-full bg-primary/8 blur-3xl" />
@@ -42,9 +46,9 @@ export default function SolutionSection() {
           viewport={{ once: true }}
           className="max-w-3xl mx-auto text-center mb-16"
         >
-          <span className="inline-flex items-center rounded-full bg-primary/10 text-primary px-4 py-1.5 text-sm font-medium mb-4">
+          <p className="mb-4 inline-flex rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
             Soluciones digitales
-          </span>
+          </p>
 
           <h2 className="text-3xl md:text-4xl font-bold text-dark mb-4">
             La tecnología adecuada puede transformar tu negocio

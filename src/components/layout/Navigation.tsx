@@ -61,9 +61,10 @@ export function Navigation() {
         >
           <Image
             src="/images/logo-appsfly.png"
-            alt="AppsFly Logo"
+            alt="AppsFly — Desarrollo web profesional en Chile"
             width={120}
             height={40}
+            priority
             className="h-auto w-auto"
           />
         </Link>

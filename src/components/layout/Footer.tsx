@@ -40,7 +40,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-dark text-white">
+    <footer aria-label="Pie de página" className="bg-dark text-white">
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid gap-12 md:grid-cols-3">
           {/* Brand */}
@@ -170,6 +170,8 @@ export default function Footer() {
                 <Link
                   href="https://www.instagram.com/appsfly.cl/"
                   target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Seguir a AppsFly en Instagram"
                   className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5 text-white/70 transition hover:bg-primary hover:text-white"
                 >
                   <Instagram className="h-4 w-4" />
@@ -178,6 +180,8 @@ export default function Footer() {
                 <Link
                   href="https://www.facebook.com/profile.php?id=61585307100875"
                   target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Seguir a AppsFly en Facebook"
                   className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5 text-white/70 transition hover:bg-primary hover:text-white"
                 >
                   <Facebook className="h-4 w-4" />

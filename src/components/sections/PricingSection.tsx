@@ -63,6 +63,7 @@ export default function PricingSection() {
   return (
     <section
       id="pricing"
+      aria-label="Planes y precios de desarrollo web"
       className="relative overflow-hidden bg-background py-24"
     >
       <div className="absolute inset-0 pointer-events-none">
@@ -79,12 +80,12 @@ export default function PricingSection() {
           transition={{ duration: 0.6 }}
           className="mx-auto mb-16 max-w-3xl text-center"
         >
-          <span className="mb-4 inline-flex rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
+          <p className="mb-4 inline-flex rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
             Planes y precios
-          </span>
+          </p>
 
           <h2 className="mb-5 text-3xl font-bold tracking-tight text-dark md:text-4xl">
-            Algunos de nuestros planes más vendidos
+            Planes de desarrollo web adaptados a tu negocio
           </h2>
 
           <p className="text-lg leading-relaxed text-gray-600">

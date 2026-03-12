@@ -56,7 +56,11 @@ export default function ReviewsSection() {
   const googleUrl = "https://www.google.com/maps"; // reemplaza con tu link real de Google Business
 
   return (
-    <section id="reviews" className="relative overflow-hidden bg-white py-24">
+    <section
+      id="reviews"
+      aria-label="Opiniones de clientes"
+      className="relative overflow-hidden bg-white py-24"
+    >
       {/* decorative gradients */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-0 top-16 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
@@ -73,9 +77,9 @@ export default function ReviewsSection() {
           transition={{ duration: 0.6 }}
           className="mx-auto mb-14 max-w-3xl text-center"
         >
-          <span className="mb-4 inline-flex rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
+          <p className="mb-4 inline-flex rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
             Opiniones de clientes
-          </span>
+          </p>
 
           <h2 className="mb-4 text-3xl font-bold tracking-tight text-dark md:text-4xl">
             Lo que dicen nuestros clientes

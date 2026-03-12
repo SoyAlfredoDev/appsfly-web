@@ -73,7 +73,11 @@ const sectionVariant = {
 
 export default function HowItWorksSection() {
   return (
-    <section id="process" className="relative overflow-hidden bg-white py-24">
+    <section
+      id="process"
+      aria-label="Proceso de trabajo — cómo trabajamos"
+      className="relative overflow-hidden bg-white py-24"
+    >
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-[-80px] h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
         <div className="absolute bottom-10 right-[-80px] h-80 w-80 rounded-full bg-secondary/10 blur-3xl" />
@@ -88,9 +92,9 @@ export default function HowItWorksSection() {
           transition={{ duration: 0.6 }}
           className="mx-auto mb-16 max-w-3xl text-center"
         >
-          <span className="mb-4 inline-flex rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
+          <p className="mb-4 inline-flex rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
             Cómo trabajamos
-          </span>
+          </p>
 
           <h2 className="mb-5 text-3xl font-bold tracking-tight text-dark md:text-4xl">
             Elige la forma de avanzar que mejor se adapte a tu negocio

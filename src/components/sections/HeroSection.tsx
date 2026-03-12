@@ -21,6 +21,7 @@ export default function HeroSection() {
   return (
     <section
       id="home"
+      aria-label="Inicio — Desarrollo web profesional en Chile"
       className="relative overflow-hidden bg-white pt-24 sm:pt-28"
     >
       {/* Decorative background */}
@@ -38,14 +39,14 @@ export default function HeroSection() {
             animate="visible"
             className="mx-auto w-full max-w-2xl lg:mx-0"
           >
-            <motion.div
+            <motion.p
               variants={fadeUp}
               custom={0}
               className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-secondary shadow-sm"
             >
               <Sparkles className="h-4 w-4" />
-              Soluciones modernas para tu negocio
-            </motion.div>
+              Desarrollo web profesional en Chile
+            </motion.p>
 
             <motion.h1
               variants={fadeUp}

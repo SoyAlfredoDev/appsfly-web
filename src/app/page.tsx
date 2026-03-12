@@ -1,6 +1,7 @@
 import { Navigation } from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
-import HeroSection from "@/components/sections/HeroSection";
+import JsonLd from "@/components/seo/JsonLd";
+import HeroSection from "@/components/sections/HeroSection.jsx";
 import ProblemSection from "@/components/sections/ProblemSection";
 import SolutionSection from "@/components/sections/SolutionSection";
 import ServicesSection from "@/components/sections/ServicesSection";
@@ -11,17 +12,20 @@ import ContactSection from "@/components/sections/ContactSection";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <Navigation />
-      <HeroSection />
-      <ProblemSection />
-      <SolutionSection />
-      <ServicesSection />
-      <HowItWorksSection />
-      <PricingSection />
-      <ReviewsSection />
-      <ContactSection />
-      <Footer />
-    </main>
+    <>
+      <JsonLd />
+      <main className="min-h-screen">
+        <Navigation />
+        <HeroSection />
+        <ProblemSection />
+        <SolutionSection />
+        <ServicesSection />
+        <HowItWorksSection />
+        <PricingSection />
+        <ReviewsSection />
+        <ContactSection />
+        <Footer />
+      </main>
+    </>
   );
 }
