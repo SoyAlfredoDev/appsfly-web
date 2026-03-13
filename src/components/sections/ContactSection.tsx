@@ -89,7 +89,7 @@ export default function ContactSection() {
 
       await sendEmail({
         to: "contacto@appsfly.cl",
-        subject: "Nueva solicitud de contacto desde AppsFly.cl",
+        subject: `Nueva solicitud de contacto: ${formData.name}`,
         html: htmlContent,
         replyTo: formData.email,
         text: formData.message,
