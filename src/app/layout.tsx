@@ -16,10 +16,9 @@ const geistMono = Geist_Mono({
 
 const SITE_URL = "https://appsfly.cl";
 const SITE_NAME = "AppsFly";
-const SITE_TITLE =
-  "AppsFly — Desarrollo Web Profesional, Tiendas Online y Automatización en Chile";
+const SITE_TITLE = "AppsFly | Desarrolladores Web y Software";
 const SITE_DESCRIPTION =
-  "Creamos landing pages, sitios web corporativos, tiendas online y automatización de WhatsApp para pymes y emprendedores en Chile. Agenda tu asesoría gratis.";
+  "Landing pages, sitios web, tiendas online, automatización de WhatsApp y software a medida";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
