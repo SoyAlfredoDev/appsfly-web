@@ -10,18 +10,22 @@ export default function ProblemSection() {
       title: "Tu sitio web no genera clientes",
       description:
         "Muchos negocios tienen páginas web antiguas o mal optimizadas que no convierten visitantes en clientes reales.",
+      image: "/images/problem-01.jpg", // Reemplaza con tu link
     },
     {
       icon: MessageCircleWarning,
       title: "Pierdes oportunidades por no responder rápido",
       description:
         "Los clientes esperan respuestas inmediatas en WhatsApp o redes sociales. Si tardas demasiado, buscan otra opción.",
+      image:
+        "https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&q=80&w=800", // Reemplaza con tu link
     },
     {
       icon: Clock,
       title: "Procesos manuales que consumen tiempo",
       description:
         "Sin automatización ni herramientas digitales, muchas tareas se vuelven repetitivas y reducen la eficiencia de tu negocio.",
+      image: "/images/problem-03.jpg", // Reemplaza con tu link
     },
   ];
 
@@ -50,12 +54,12 @@ export default function ProblemSection() {
             ¿Te identificas?
           </p>
 
-          <h2 className="text-3xl md:text-4xl font-bold text-dark mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#021f41] mb-4">
             Tu negocio podría estar perdiendo clientes por falta de presencia
             digital
           </h2>
 
-          <p className="text-lg text-text-secondary leading-relaxed">
+          <p className="text-lg text-gray-600 leading-relaxed">
             Muchos negocios tienen presencia digital, pero no está optimizada
             para atraer clientes ni para aprovechar las oportunidades online.
           </p>
@@ -73,19 +77,34 @@ export default function ProblemSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
                 viewport={{ once: true }}
-                className="group bg-surface rounded-2xl p-8 shadow-sm border border-border hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+                className="group flex flex-col overflow-hidden rounded-[28px] border border-border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
-                <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-red-50 text-red-400">
-                  <Icon size={28} />
+                {/* Image Container */}
+                <div className="relative h-52 w-full overflow-hidden bg-gray-100">
+                  <img
+                    src={problem.image}
+                    alt={problem.title}
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  {/* Overlay oscuro sutil para que el ícono resalte más */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#021f41]/40 via-transparent to-transparent" />
+
+                  {/* Floating Icon */}
+                  <div className="absolute bottom-4 left-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-red-500 shadow-md">
+                    <Icon size={24} />
+                  </div>
                 </div>
 
-                <h3 className="text-xl font-semibold text-dark mb-3 leading-snug">
-                  {problem.title}
-                </h3>
+                {/* Content Container */}
+                <div className="flex flex-1 flex-col p-6 pt-5">
+                  <h3 className="mb-3 text-xl font-semibold text-[#021f41] leading-snug">
+                    {problem.title}
+                  </h3>
 
-                <p className="text-text-secondary leading-relaxed">
-                  {problem.description}
-                </p>
+                  <p className="text-gray-600 leading-relaxed">
+                    {problem.description}
+                  </p>
+                </div>
               </motion.div>
             );
           })}

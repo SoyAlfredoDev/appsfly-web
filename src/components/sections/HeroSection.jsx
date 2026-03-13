@@ -53,9 +53,9 @@ export default function HeroSection() {
               custom={0.1}
               className="max-w-[12ch] text-4xl font-extrabold leading-[1.05] tracking-tight text-dark sm:text-5xl lg:max-w-none lg:text-6xl xl:text-[4.25rem]"
             >
-              Haz crecer tu marca con una web
+              Desarrollamos sitios web y software
               <span className="mt-2 block text-primary">
-                moderna, clara y efectiva
+                para hacer crecer tu negocio
               </span>
             </motion.h1>
 

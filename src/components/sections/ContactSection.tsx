@@ -23,6 +23,7 @@ export default function ContactSection() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
+    phone: "",
     email: "",
     service: "",
     contactMethod: "",
@@ -49,6 +50,7 @@ export default function ContactSection() {
     const newErrors: Record<string, string> = {};
 
     if (!formData.name.trim()) newErrors.name = "El nombre es obligatorio.";
+    if (!formData.phone.trim()) newErrors.phone = "El telefono es obligatorio.";
 
     if (!formData.email.trim()) {
       newErrors.email = "El correo electrónico es obligatorio.";
@@ -78,6 +80,7 @@ export default function ContactSection() {
     try {
       const htmlContent = contactRequestEmailTemplate({
         name: formData.name,
+        phone: formData.phone,
         email: formData.email,
         service: formData.service,
         contactMethod: formData.contactMethod,
@@ -96,6 +99,7 @@ export default function ContactSection() {
 
       setFormData({
         name: "",
+        phone: "",
         email: "",
         service: "",
         contactMethod: "",
@@ -223,6 +227,40 @@ export default function ContactSection() {
                         className="mt-1.5 flex items-center gap-1.5 text-sm text-red-500"
                       >
                         <AlertCircle size={14} /> {errors.name}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </div>
+                {/* Phone */}
+                <div>
+                  <label
+                    htmlFor="phone"
+                    className="mb-2 block text-sm font-medium text-dark"
+                  >
+                    Telefono
+                  </label>
+                  <input
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    type="tel"
+                    placeholder="Tu telefono"
+                    className={`w-full rounded-2xl border bg-white px-4 py-3 text-dark outline-none transition ${
+                      errors.phone
+                        ? "border-red-500 focus:border-red-500"
+                        : "border-border focus:border-primary"
+                    }`}
+                  />
+                  <AnimatePresence>
+                    {errors.phone && (
+                      <motion.p
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="mt-1.5 flex items-center gap-1.5 text-sm text-red-500"
+                      >
+                        <AlertCircle size={14} /> {errors.phone}
                       </motion.p>
                     )}
                   </AnimatePresence>

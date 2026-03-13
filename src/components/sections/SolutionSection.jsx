@@ -10,18 +10,24 @@ export default function SolutionSection() {
       title: "Sitios web diseñados para generar clientes",
       description:
         "Creamos páginas web modernas, rápidas y enfocadas en transmitir confianza, comunicar valor y convertir visitas en oportunidades reales.",
+      image:
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800", // Reemplaza con tu link
     },
     {
       icon: Bot,
       title: "Automatización de atención y procesos",
       description:
         "Implementamos automatizaciones para WhatsApp y otros canales digitales para responder más rápido, organizar consultas y mejorar la atención.",
+      image:
+        "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800", // Reemplaza con tu link
     },
     {
       icon: Blocks,
       title: "Software adaptado a tu negocio",
       description:
         "Desarrollamos soluciones a medida para digitalizar procesos, optimizar tareas y ayudarte a operar de forma más eficiente.",
+      image:
+        "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=800", // Reemplaza con tu link
     },
   ];
 
@@ -73,16 +79,30 @@ export default function SolutionSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: index * 0.15 }}
                 viewport={{ once: true }}
-                className="group relative overflow-hidden rounded-2xl border border-border bg-surface p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                className="group flex flex-col overflow-hidden rounded-[28px] border border-border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                {/* Contenedor de la Imagen */}
+                <div className="relative h-48 w-full overflow-hidden bg-gray-100">
+                  <img
+                    src={solution.image}
+                    alt={solution.title}
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  {/* Overlay sutil con el color primario (verde) en hover para dar un tono de "solución/éxito" */}
+                  <div className="absolute inset-0 bg-primary/0 transition-colors duration-500 group-hover:bg-primary/10" />
 
-                <div className="relative">
-                  <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                    <Icon size={28} />
+                  {/* Gradiente inferior para que el ícono resalte */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                </div>
+
+                {/* Contenedor del Contenido */}
+                <div className="relative flex flex-1 flex-col p-6 pt-8">
+                  {/* Ícono Flotante superpuesto entre la imagen y el texto */}
+                  <div className="absolute -top-7 left-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-primary shadow-md border border-gray-50 transition-transform duration-300 group-hover:-translate-y-1">
+                    <Icon size={26} strokeWidth={2.5} />
                   </div>
 
-                  <h3 className="text-xl font-semibold text-dark mb-3 leading-snug">
+                  <h3 className="mb-3 text-xl font-semibold text-dark leading-snug">
                     {solution.title}
                   </h3>
 

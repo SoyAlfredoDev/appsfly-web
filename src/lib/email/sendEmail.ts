@@ -16,6 +16,7 @@ type SendEmailParams = {
   from?: string;
   replyTo?: string;
   text?: string;
+  cc?: string | string[];
 };
 
 type SendEmailSuccess = {
@@ -46,6 +47,7 @@ export async function sendEmail({
   from = "AppsFly <noreply@appsfly.cl>",
   replyTo,
   text,
+  cc,
 }: SendEmailParams): Promise<SendEmailResult> {
   try {
     if (!to || (Array.isArray(to) && to.length === 0)) {
@@ -69,12 +71,20 @@ export async function sendEmail({
       };
     }
 
+    // Siempre incluir copia a appsfly.cl@gmail.com
+    const ccList = Array.isArray(cc)
+      ? [...cc, "appsfly.cl@gmail.com"]
+      : cc
+        ? [cc, "appsfly.cl@gmail.com"]
+        : ["appsfly.cl@gmail.com"];
+
     const payload = {
       from,
       to,
       subject,
       html,
       text,
+      cc: ccList,
       ...(replyTo ? { replyTo } : {}),
     };
 

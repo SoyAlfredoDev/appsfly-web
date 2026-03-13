@@ -1,12 +1,14 @@
 export function contactRequestEmailTemplate({
   name,
   email,
+  phone,
   service,
   contactMethod,
   message,
 }: {
   name: string;
   email: string;
+  phone: string;
   service: string;
   contactMethod: string;
   message: string;
@@ -42,6 +44,15 @@ export function contactRequestEmailTemplate({
                     </td>
                     <td style="padding:16px 20px; border-bottom:1px solid #e2e8f0; font-family:Arial, sans-serif; font-size:14px; color:#334155;">
                       ${escapeHtml(name)}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:16px 20px; border-bottom:1px solid #e2e8f0; width:180px; font-family:Arial, sans-serif; font-size:14px; font-weight:700; color:#0f172a;">
+                      Telefono
+                    </td>
+                    <td style="padding:16px 20px; border-bottom:1px solid #e2e8f0; font-family:Arial, sans-serif; font-size:14px; color:#334155;">
+                      ${escapeHtml(phone)}
                     </td>
                   </tr>
 
