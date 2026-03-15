@@ -9,12 +9,14 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "framer-motion": "^12.35.2",
     "lucide-react": "^0.577.0",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "recharts": "^3.8.0",
     "resend": "^6.9.3",
     "tailwind": "^4.0.0"
   },
