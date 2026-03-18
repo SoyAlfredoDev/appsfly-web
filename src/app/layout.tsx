@@ -79,10 +79,10 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     images: [
       {
-        url: "https://www.appsfly.cl/images/og-image.png",
+        url: "https://www.appsfly.cl/images/og-image-v2.jpg",
         width: 1200,
         height: 630,
-        alt: "AppsFly — Desarrollo web profesional en Chile",
+        alt: "AppsFly — Desarrollo web y software",
       },
     ],
   },
@@ -91,7 +91,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    images: ["https://www.appsfly.cl/images/og-image.png"],
+    images: ["https://www.appsfly.cl/images/og-image-v2.jpg"],
     creator: "@appsfly_cl",
   },
 
