@@ -74,7 +74,7 @@ export default function ProblemSection() {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <p className="mb-4 inline-flex items-center rounded-full bg-white px-4 py-1.5 text-sm font-bold text-red-600 shadow-sm">
-            ¿Te identificas?
+            Problema
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-chillax leading-tight">
             Tu negocio podría estar perdiendo clientes por falta de presencia
@@ -85,8 +85,7 @@ export default function ProblemSection() {
             para atraer clientes.
           </p>
         </motion.div>
-
-        {/* Grid / Accordion Container */}
+        s{/* Grid / Accordion Container */}
         <div className="grid md:grid-cols-3 gap-6 md:gap-8">
           {problems.map((problem, index) => {
             const Icon = problem.icon;

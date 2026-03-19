@@ -50,10 +50,10 @@ export default function SolutionSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="max-w-3xl mx-auto text-center mb-16"
+          className="max-w-3xl mx-auto text-center mb-12"
         >
           <p className="mb-4 inline-flex rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
-            Soluciones digitales
+            Soluciones
           </p>
 
           <h2 className="text-3xl md:text-4xl font-bold text-dark mb-4 font-chillax">
@@ -71,7 +71,7 @@ export default function SolutionSection() {
           - Mobile: Flexbox con scroll horizontal y snap
           - Desktop: Grid de 3 columnas
         */}
-        <div className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0">
+        <div className="flex gap-6 overflow-x-auto pb-2 snap-x snap-mandatory hide-scrollbar lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0">
           {solutions.map((solution, index) => {
             const Icon = solution.icon;
 
@@ -98,7 +98,7 @@ export default function SolutionSection() {
                 </div>
 
                 {/* Contenedor del Contenido */}
-                <div className="relative flex flex-1 flex-col p-6 pt-10">
+                <div className="relative flex flex-1 flex-col py-2 px-6 pt-10">
                   {/* Ícono Flotante */}
                   <div className="absolute -top-7 left-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-primary shadow-md border border-gray-50 transition-transform duration-300 group-hover:-translate-y-1">
                     <Icon size={26} strokeWidth={2.5} />
