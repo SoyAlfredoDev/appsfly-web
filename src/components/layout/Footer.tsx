@@ -38,6 +38,11 @@ export default function Footer() {
       }
     }
   };
+  const TikTokIcon = ({ className }: { className?: string }) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M21 8.5a7.5 7.5 0 01-4.5-1.5v6.75a6.25 6.25 0 11-6.25-6.25c.2 0 .4.02.6.05v3.05a3.25 3.25 0 102.65 3.2V2h3a4.5 4.5 0 004.5 4.5v2z" />
+    </svg>
+  );
 
   return (
     <footer aria-label="Pie de página" className="bg-dark text-white">
@@ -87,11 +92,11 @@ export default function Footer() {
                 <div className="flex items-start gap-3">
                   <MessageCircle className="mt-0.5 h-4 w-4 text-primary" />
                   <a
-                    href="https://wa.me/56921629730"
+                    href="https://wa.me/353838316917"
                     target="_blank"
                     className="transition hover:text-white"
                   >
-                    +56 9 2162 9730
+                    +353 83 831 6917
                   </a>
                 </div>
               </div>
@@ -185,6 +190,15 @@ export default function Footer() {
                   className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5 text-white/70 transition hover:bg-primary hover:text-white"
                 >
                   <Facebook className="h-4 w-4" />
+                </Link>
+                <Link
+                  href="https://www.tiktok.com/@appsfly8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Seguir a AppsFly en TikTok"
+                  className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5 text-white/70 transition hover:bg-primary hover:text-white"
+                >
+                  <TikTokIcon className="h-4 w-4" />
                 </Link>
               </div>
             </div>

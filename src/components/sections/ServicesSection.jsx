@@ -19,6 +19,8 @@ const services = [
     ],
     buttonText: "Más información",
     icon: Globe,
+    isVideo: false,
+    video: "",
     img: "/images/services-landing-page.jpg",
     imgAlt: "Desarrollo de sitios web profesionales en Chile — AppsFly",
   },
@@ -35,6 +37,8 @@ const services = [
     ],
     buttonText: "Más información",
     icon: ShoppingCart,
+    isVideo: true,
+    video: "/videos/services-web-store.mp4",
     img: "/images/services-web-store.png",
     imgAlt: "Desarrollo de tiendas online y e-commerce en Chile — AppsFly",
   },
@@ -51,6 +55,8 @@ const services = [
     ],
     buttonText: "Más información",
     icon: Bot,
+    isVideo: false,
+    video: "",
     img: "/images/services-whatsapp.jpg",
     imgAlt: "Automatización de WhatsApp para negocios en Chile — AppsFly",
   },
@@ -58,7 +64,14 @@ const services = [
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.65,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
 };
 
 export default function ServicesSection() {
@@ -68,9 +81,9 @@ export default function ServicesSection() {
       aria-label="Servicios de desarrollo web, e-commerce y automatización"
       className="relative overflow-hidden bg-background py-24"
     >
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-0 top-16 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
-        <div className="absolute right-0 bottom-10 h-80 w-80 rounded-full bg-secondary/10 blur-3xl" />
+        <div className="absolute bottom-10 right-0 h-80 w-80 rounded-full bg-secondary/10 blur-3xl" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6">
@@ -79,7 +92,6 @@ export default function ServicesSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6 }}
           className="mx-auto mb-20 max-w-3xl text-center"
         >
           <p className="mb-4 inline-flex rounded-full bg-secondary/10 px-4 py-1.5 text-sm font-semibold text-secondary">
@@ -102,6 +114,10 @@ export default function ServicesSection() {
           {services.map((service, index) => {
             const Icon = service.icon;
             const isReverse = index % 2 === 1;
+            const shouldRenderVideo =
+              service.isVideo &&
+              typeof service.video === "string" &&
+              service.video.trim() !== "";
 
             return (
               <motion.article
@@ -110,7 +126,7 @@ export default function ServicesSection() {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.65, delay: index * 0.08 }}
+                transition={{ delay: index * 0.08 }}
                 className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16"
               >
                 <div className={isReverse ? "lg:order-2" : ""}>
@@ -145,19 +161,32 @@ export default function ServicesSection() {
                   </button>
                 </div>
 
-                {/* Image Placeholder */}
                 <div className={isReverse ? "lg:order-1" : ""}>
                   <div className="relative overflow-hidden rounded-[28px] border border-border bg-white shadow-xl">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
-                    <div className="relative aspect-[16/10] w-full flex flex-col items-center justify-center bg-gradient-to-br from-background via-white to-background">
-                      <Image
-                        src={service.img}
-                        alt={service.imgAlt}
-                        width={1000}
-                        height={1000}
-                        loading="lazy"
-                        className="w-full h-full object-cover"
-                      />
+
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-background via-white to-background">
+                      {shouldRenderVideo ? (
+                        <video
+                          src={service.video}
+                          className="h-full w-full object-cover"
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          preload="metadata"
+                          aria-label={service.imgAlt}
+                        />
+                      ) : (
+                        <Image
+                          src={service.img}
+                          alt={service.imgAlt}
+                          width={1000}
+                          height={1000}
+                          loading="lazy"
+                          className="h-full w-full object-cover"
+                        />
+                      )}
                     </div>
                   </div>
                 </div>

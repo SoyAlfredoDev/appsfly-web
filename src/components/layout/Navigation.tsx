@@ -11,10 +11,9 @@ const NAV_LINKS = [
   { name: "Problema", href: "#problem" },
   { name: "Soluciones", href: "#solutions" },
   { name: "Servicios", href: "#services" },
-  { name: "Cómo trabajamos", href: "#process" },
+  { name: "Portafolio", href: "#portfolio" },
   { name: "Planes", href: "#pricing" },
   { name: "Opiniones", href: "#reviews" },
-  { name: "Contacto", href: "#contact" },
 ];
 
 export function Navigation() {
@@ -127,13 +126,13 @@ export function Navigation() {
                 </motion.a>
               ))}
               <div className="pt-2">
-                <a
+                <Link
                   href="#contact"
                   onClick={(e) => handleNavClick(e, "#contact")}
                   className="block text-center text-sm font-semibold bg-primary text-white px-5 py-3 rounded-full hover:bg-primary/90 transition-colors"
                 >
                   Hablemos
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>

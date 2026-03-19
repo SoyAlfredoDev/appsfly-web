@@ -5,7 +5,7 @@ import HeroSection from "@/components/sections/HeroSection.jsx";
 import ProblemSection from "@/components/sections/ProblemSection";
 import SolutionSection from "@/components/sections/SolutionSection";
 import ServicesSection from "@/components/sections/ServicesSection";
-import HowItWorksSection from "@/components/sections/HowItWorksSection";
+import PortfolioSection from "@/components/sections/PortfolioSection";
 import PricingSection from "@/components/sections/PricingSection";
 import ReviewsSection from "@/components/sections/ReviewsSection";
 import ContactSection from "@/components/sections/ContactSection";
@@ -20,10 +20,10 @@ export default function Home() {
         <ProblemSection />
         <SolutionSection />
         <ServicesSection />
-        <HowItWorksSection />
+        <PortfolioSection />
         <PricingSection />
-        <ReviewsSection />
         <ContactSection />
+        <ReviewsSection />
         <Footer />
       </main>
     </>
