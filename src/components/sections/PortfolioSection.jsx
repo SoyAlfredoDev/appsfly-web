@@ -55,14 +55,28 @@ export default function PortfolioSection() {
     <section
       id="portfolio"
       aria-label="Portafolio y trabajos realizados"
-      className="relative overflow-hidden bg-white py-20 md:py-24"
+      className="relative overflow-hidden py-20 md:py-24 bg-[#021f41]"
     >
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-0 top-16 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-secondary/10 blur-3xl" />
+      {/* --- FONDO CON IMAGEN Y TONO AZUL --- */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/bg-porfolio.jpg" // Asegúrate de que el nombre coincida en tu carpeta public
+          alt="Background Portfolio"
+          fill
+          className="object-cover opacity-30" // Imagen semitransparente
+          priority
+        />
+        {/* Overlay Azul #094fd1 con mezcla para acabado profesional */}
+        <div className="absolute inset-0 bg-[#094fd1]/60 mix-blend-multiply" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6">
+      {/* Gradientes decorativos sutiles */}
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <div className="absolute left-0 top-16 h-72 w-72 rounded-full bg-blue-400/10 blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -70,61 +84,63 @@ export default function PortfolioSection() {
           viewport={{ once: true, amount: 0.2 }}
           className="mx-auto mb-14 max-w-3xl text-center md:mb-16"
         >
-          <p className="mb-4 inline-flex rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
+          <p className="mb-4 inline-flex rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold text-white backdrop-blur-sm border border-white/20">
             Portafolio
           </p>
 
-          <h2 className="mb-5 text-3xl font-bold tracking-tight text-dark md:text-4xl">
+          <h2 className="mb-5 text-3xl font-bold tracking-tight text-white md:text-4xl font-chillax">
             Algunos trabajos y proyectos realizados
           </h2>
 
-          <p className="text-base leading-relaxed text-text-secondary md:text-lg">
+          <p className="text-base leading-relaxed text-white/80 md:text-lg font-inter">
             Una muestra de proyectos desarrollados con enfoque visual,
             estructura estratégica y objetivos claros de captación, venta y
             crecimiento digital.
           </p>
         </motion.div>
 
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {/* Grid / Snap Scroll Container */}
+        <div className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0">
           {portfolioItems.map((item, index) => (
             <motion.article
               key={item.id}
               variants={fadeUp}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.15 }}
               transition={{ delay: index * 0.08 }}
-              className="group overflow-hidden rounded-[24px] border border-border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(15,23,42,0.10)]"
+              className="group relative flex flex-col overflow-hidden rounded-[28px] border border-white/10 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(0,0,0,0.3)] 
+              min-w-[85vw] sm:min-w-[400px] lg:min-w-full snap-center"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
                 <Image
                   src={item.image}
                   alt={item.alt}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark/45 via-primary/3 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#021f41]/80 via-transparent to-transparent opacity-60" />
 
                 <div className="absolute left-4 top-4">
-                  <span className="inline-flex rounded-full border border-white/30 bg-dark/85 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+                  <span className="inline-flex rounded-full border border-white/30 bg-black/50 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md">
                     {item.category}
                   </span>
                 </div>
               </div>
 
-              <div className="p-5 md:p-6">
-                <h3 className="text-xl font-bold leading-tight text-dark">
+              <div className="flex flex-1 flex-col p-6">
+                <h3 className="text-xl font-bold leading-tight text-[#021f41] font-chillax">
                   {item.title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-6 text-text-secondary md:text-[15px]">
+                <p className="mt-3 flex-1 text-sm leading-6 text-gray-600 md:text-[15px] font-inter">
                   {item.description}
                 </p>
 
                 <Link
                   href={item.href}
                   target="_blank"
-                  className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors duration-300 hover:text-secondary"
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#094fd1] transition-colors duration-300 hover:text-[#01c676]"
                 >
                   Ver proyecto
                   <ExternalLink className="h-4 w-4" />
@@ -134,22 +150,39 @@ export default function PortfolioSection() {
           ))}
         </div>
 
+        {/* Indicadores visuales para móvil */}
+        <div className="mt-6 flex justify-center gap-2 lg:hidden">
+          {portfolioItems.map((_, i) => (
+            <div key={i} className="h-1 w-4 rounded-full bg-white/20" />
+          ))}
+        </div>
+
         <motion.div
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          className="mt-10 flex justify-center md:mt-12"
+          className="mt-12 flex justify-center md:mt-16"
         >
           <Link
             href="#contact"
-            className="group inline-flex items-center gap-2 rounded-2xl bg-primary px-6 py-3.5 text-sm font-semibold text-white shadow-[0_16px_40px_rgba(37,99,235,0.20)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-secondary hover:shadow-[0_20px_46px_rgba(99,102,241,0.24)]"
+            className="group inline-flex items-center gap-2 rounded-2xl bg-[#01c676] px-8 py-4 text-sm font-bold text-white shadow-[0_16px_40px_rgba(1,198,118,0.25)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#094fd1] hover:shadow-[0_20px_46px_rgba(9,79,209,0.3)]"
           >
-            Ver más trabajos
+            Empezar mi proyecto
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </motion.div>
       </div>
+
+      <style jsx global>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </section>
   );
 }

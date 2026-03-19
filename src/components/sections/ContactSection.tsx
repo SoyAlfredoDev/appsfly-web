@@ -149,7 +149,65 @@ export default function ContactSection() {
 
         <div className="relative mx-auto max-w-7xl px-6">
           <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-12">
+            {/* Left content */}
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6 }}
+              className="pt-2"
+            >
+              <p className="mb-4 inline-flex rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
+                Contacto
+              </p>
+              <h2 className="mb-5 text-3xl font-bold tracking-tight text-dark md:text-4xl">
+                Cotiza tu proyecto web — Hablemos
+              </h2>
+
+              <p className="mb-8 max-w-xl text-lg leading-relaxed text-gray-600">
+                Completa el formulario y nos pondremos en contacto contigo para
+                ayudarte a encontrar la mejor solución para tu negocio.
+              </p>
+
+              <div className="space-y-4">
+                <div className="flex items-start gap-4 rounded-2xl border border-border bg-white p-4 shadow-sm">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                    <MessageCircle size={20} />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-dark">
+                      Contacto por WhatsApp
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      Ideal si prefieres una respuesta rápida y una conversación
+                      más directa.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 rounded-2xl border border-border bg-white p-4 shadow-sm">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-secondary/10 text-secondary">
+                    <Mail size={20} />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-dark">
+                      Contacto por email
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      Recomendado si prefieres recibir la información de forma
+                      más ordenada.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <p className="mt-6 text-sm text-gray-500">
+                Respuesta estimada en menos de 24 horas.
+              </p>
+            </motion.div>
             {/* Form */}
+
             <motion.div
               variants={fadeUp}
               initial="hidden"
@@ -332,65 +390,6 @@ export default function ContactSection() {
                   según tu preferencia.
                 </p>
               </form>
-            </motion.div>
-
-            {/* Left content */}
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6 }}
-              className="pt-2"
-            >
-              <p className="mb-4 inline-flex rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
-                Contacto
-              </p>
-
-              <h2 className="mb-5 text-3xl font-bold tracking-tight text-dark md:text-4xl">
-                Cotiza tu proyecto web — Hablemos
-              </h2>
-
-              <p className="mb-8 max-w-xl text-lg leading-relaxed text-gray-600">
-                Completa el formulario y nos pondremos en contacto contigo para
-                ayudarte a encontrar la mejor solución para tu negocio.
-              </p>
-
-              <div className="space-y-4">
-                <div className="flex items-start gap-4 rounded-2xl border border-border bg-white p-4 shadow-sm">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                    <MessageCircle size={20} />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-dark">
-                      Contacto por WhatsApp
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      Ideal si prefieres una respuesta rápida y una conversación
-                      más directa.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4 rounded-2xl border border-border bg-white p-4 shadow-sm">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-secondary/10 text-secondary">
-                    <Mail size={20} />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-dark">
-                      Contacto por email
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      Recomendado si prefieres recibir la información de forma
-                      más ordenada.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <p className="mt-6 text-sm text-gray-500">
-                Respuesta estimada en menos de 24 horas.
-              </p>
             </motion.div>
           </div>
         </div>

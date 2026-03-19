@@ -1,9 +1,14 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useMotionValueEvent,
+} from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
@@ -18,15 +23,27 @@ const NAV_LINKS = [
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  // Usamos el hook de Framer Motion para tracking de scroll eficiente
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() ?? 0;
+
+    // Lógica de visibilidad (Smart Nav)
+    // Aparece si: estamos arriba (latest < 50) O si subimos (latest < previous)
+    if (latest > previous && latest > 150) {
+      setIsVisible(false); // Bajando
+      setIsMobileMenuOpen(false); // Cerramos menú si el usuario scrollea
+    } else {
+      setIsVisible(true); // Subiendo o en el top
+    }
+
+    // Lógica estética (Background/Blur)
+    setIsScrolled(latest > 20);
+  });
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -34,7 +51,6 @@ export function Navigation() {
   ) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
-
     if (href.startsWith("#")) {
       const element = document.getElementById(href.substring(1));
       if (element) {
@@ -44,8 +60,15 @@ export function Navigation() {
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <motion.nav
+      // Animación de entrada/salida
+      variants={{
+        visible: { y: 0 },
+        hidden: { y: "-100%" },
+      }}
+      animate={isVisible ? "visible" : "hidden"}
+      transition={{ duration: 0.35, ease: "easeInOut" }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
         isScrolled
           ? "bg-white/80 backdrop-blur-md shadow-sm py-3"
           : "bg-transparent py-5"
@@ -60,7 +83,7 @@ export function Navigation() {
         >
           <Image
             src="/images/logo-appsfly.png"
-            alt="AppsFly — Desarrollo web profesional en Chile"
+            alt="AppsFly"
             width={120}
             height={40}
             priority
@@ -83,7 +106,7 @@ export function Navigation() {
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, "#contact")}
-            className="text-sm font-semibold bg-primary text-white px-5 py-2.5 rounded-full hover:bg-primary/90 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/20"
+            className="text-sm font-semibold bg-[#01c676] text-white px-5 py-2.5 rounded-full hover:bg-[#01c676]/90 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#01c676]/20"
           >
             Hablemos
           </a>
@@ -93,7 +116,7 @@ export function Navigation() {
         <div className="lg:hidden">
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-dark p-2 rounded-xl hover:bg-background transition-colors"
+            className="text-dark p-2 rounded-xl hover:bg-gray-100 transition-colors"
             aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -109,7 +132,7 @@ export function Navigation() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="lg:hidden overflow-hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-lg shadow-xl border-t border-border"
+            className="lg:hidden overflow-hidden absolute top-full left-0 right-0 bg-white shadow-xl border-t border-gray-100"
           >
             <div className="py-4 px-6 flex flex-col space-y-1">
               {NAV_LINKS.map((link, index) => (
@@ -128,8 +151,7 @@ export function Navigation() {
               <div className="pt-2">
                 <Link
                   href="#contact"
-                  onClick={(e) => handleNavClick(e, "#contact")}
-                  className="block text-center text-sm font-semibold bg-primary text-white px-5 py-3 rounded-full hover:bg-primary/90 transition-colors"
+                  className="block text-center text-sm font-semibold bg-[#01c676] text-white px-5 py-3 rounded-full"
                 >
                   Hablemos
                 </Link>
@@ -138,6 +160,6 @@ export function Navigation() {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 }
