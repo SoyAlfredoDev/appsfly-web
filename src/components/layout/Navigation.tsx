@@ -106,7 +106,7 @@ export function Navigation() {
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, "#contact")}
-            className="text-sm font-semibold bg-[#01c676] text-white px-5 py-2.5 rounded-full hover:bg-[#01c676]/90 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#01c676]/20"
+            className="btn-primary"
           >
             Hablemos
           </a>
@@ -116,7 +116,7 @@ export function Navigation() {
         <div className="lg:hidden">
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-dark p-2 rounded-xl hover:bg-gray-100 transition-colors"
+            className="text-[var(--color-primary)] p-2 rounded-xl hover:bg-gray-100 transition-colors"
             aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -148,11 +148,8 @@ export function Navigation() {
                   {link.name}
                 </motion.a>
               ))}
-              <div className="pt-2">
-                <Link
-                  href="#contact"
-                  className="block text-center text-sm font-semibold bg-[#01c676] text-white px-5 py-3 rounded-full"
-                >
+              <div className="pt-2 mx-auto mb-[16px]">
+                <Link href="#contact" className="btn-primary">
                   Hablemos
                 </Link>
               </div>

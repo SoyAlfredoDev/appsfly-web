@@ -47,6 +47,11 @@ export const metadata: Metadata = {
     "desarrollo de sistemas web",
   ],
 
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+
   authors: [{ name: "Servicios Tecnológicos AppsFly SpA" }],
   creator: "AppsFly",
   publisher: "Servicios Tecnológicos AppsFly SpA",

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -16,49 +16,119 @@ const problems = [
     title: "¿Tu sitio web no genera clientes?",
     description:
       "Muchos negocios tienen páginas web antiguas o mal optimizadas que no convierten visitantes en clientes reales.",
-    image: "/images/problem-01.jpg",
+    image: "/videos/problem-01.mp4",
   },
   {
     icon: MessageCircleWarning,
     title: "¿Pierdes oportunidades por no responder rápido?",
     description:
       "Los clientes esperan respuestas inmediatas en WhatsApp o redes sociales. Si tardas demasiado, buscan otra opción.",
-    image: "/images/problem-02.jpg",
+    image: "/videos/problem-02.mp4",
   },
   {
     icon: Clock,
     title: "¿Pierdes tiempo en procesos manuales?",
     description:
       "Sin automatización ni herramientas digitales, muchas tareas se vuelven repetitivas y reducen la eficiencia de tu negocio.",
-    image: "/images/problem-03.jpg",
+    image: "/videos/problem-03.mp4",
   },
 ];
 
 export default function ProblemSection() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
+  const desktopVideoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const mobileVideoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  const stopVideo = (video: HTMLVideoElement | null) => {
+    if (!video) return;
+    video.pause();
+    video.currentTime = 0;
+  };
+
+  const playVideo = async (video: HTMLVideoElement | null) => {
+    if (!video) return;
+    if (!video.paused) return;
+
+    try {
+      video.currentTime = 0;
+      await video.play();
+    } catch {
+      // Ignorar errores de autoplay/play del navegador
+    }
+  };
+
+  useEffect(() => {
+    const allVideos = [
+      ...desktopVideoRefs.current,
+      ...mobileVideoRefs.current,
+    ].filter(Boolean) as HTMLVideoElement[];
+
+    allVideos.forEach((video) => {
+      video.playbackRate = 1;
+      video.muted = true;
+      video.playsInline = true;
+      video.preload = "metadata";
+    });
+  }, [expandedIndex]);
+
+  useEffect(() => {
+    const mobileQuery = window.matchMedia("(max-width: 767px)");
+    if (!mobileQuery.matches) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target as HTMLVideoElement;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+            playVideo(video);
+          } else {
+            stopVideo(video);
+          }
+        });
+      },
+      {
+        threshold: [0, 0.25, 0.5, 0.6, 0.75, 1],
+      },
+    );
+
+    const visibleMobileVideos = mobileVideoRefs.current.filter(
+      Boolean,
+    ) as HTMLVideoElement[];
+
+    visibleMobileVideos.forEach((video) => observer.observe(video));
+
+    return () => {
+      visibleMobileVideos.forEach((video) => {
+        observer.unobserve(video);
+        stopVideo(video);
+      });
+      observer.disconnect();
+    };
+  }, [expandedIndex]);
+
   return (
     <section
       id="problem"
       className="relative overflow-hidden py-24 bg-[#021f41]"
     >
-      {/* 1. Imagen de Fondo Controlada */}
+      {/* Fondo */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/bg-problem.jpg"
           alt="Background"
           fill
-          className="object-cover opacity-40" // Aquí controlas la transparencia de la imagen
+          className="object-cover opacity-40"
           priority
         />
-        {/* 2. Capa de Tono Verde (Overlay) */}
         <div
           className="absolute inset-0 bg-[#01c676]/60 mix-blend-multiply"
           aria-hidden="true"
         />
       </div>
 
-      {/* Gradientes decorativos sutiles */}
+      {/* Gradientes decorativos */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute right-[-80px] top-20 h-72 w-72 rounded-full bg-red-400/10 blur-3xl" />
         <div className="absolute left-[-60px] bottom-10 h-64 w-64 rounded-full bg-primary/10 blur-3xl" />
@@ -85,7 +155,8 @@ export default function ProblemSection() {
             para atraer clientes.
           </p>
         </motion.div>
-        s{/* Grid / Accordion Container */}
+
+        {/* Grid */}
         <div className="grid md:grid-cols-3 gap-6 md:gap-8">
           {problems.map((problem, index) => {
             const Icon = problem.icon;
@@ -109,27 +180,47 @@ export default function ProblemSection() {
                   className="flex w-full items-center justify-between p-6 text-left md:cursor-default md:p-0"
                 >
                   <div className="flex items-center gap-4 md:contents">
-                    {/* Imagen Desktop */}
-                    <div className="hidden md:block relative h-52 w-full overflow-hidden bg-gray-100">
-                      <Image
-                        src={problem.image}
-                        alt={problem.title}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
+                    {/* Video Desktop / Tablet */}
+                    <div
+                      className="hidden md:block relative h-52 w-full overflow-hidden bg-gray-100"
+                      onMouseEnter={() =>
+                        playVideo(desktopVideoRefs.current[index])
+                      }
+                      onMouseLeave={() =>
+                        stopVideo(desktopVideoRefs.current[index])
+                      }
+                    >
+                      <video
+                        ref={(el) => {
+                          desktopVideoRefs.current[index] = el;
+                        }}
+                        muted
+                        playsInline
+                        preload="metadata"
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      >
+                        <source src={problem.image} type="video/mp4" />
+                      </video>
+
                       <div className="absolute inset-0 bg-gradient-to-t from-[#021f41]/40 via-transparent to-transparent" />
+
                       <div className="absolute bottom-4 left-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-red-500 shadow-md">
                         <Icon size={24} />
                       </div>
                     </div>
 
-                    {/* Cabecera Móvil */}
+                    {/* Cabecera móvil */}
                     <div className="flex items-center gap-4 md:hidden">
                       <div
-                        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-colors ${isExpanded ? "bg-red-500 text-white" : "bg-red-50 text-red-500"}`}
+                        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-colors ${
+                          isExpanded
+                            ? "bg-red-500 text-white"
+                            : "bg-red-50 text-red-500"
+                        }`}
                       >
                         <Icon size={20} />
                       </div>
+
                       <h3 className="text-lg font-bold text-[#021f41] leading-tight font-chillax">
                         {problem.title}
                       </h3>
@@ -155,7 +246,7 @@ export default function ProblemSection() {
                 </div>
 
                 {/* Contenido expandible en Móvil */}
-                <AnimatePresence>
+                <AnimatePresence initial={false}>
                   {isExpanded && (
                     <motion.div
                       initial={{ height: 0, opacity: 0 }}
@@ -164,14 +255,20 @@ export default function ProblemSection() {
                       className="md:hidden"
                     >
                       <div className="px-6 pb-6 border-t border-gray-50 pt-4">
-                        <div className="relative h-44 w-full overflow-hidden rounded-2xl mb-4">
-                          <Image
-                            src={problem.image}
-                            alt={problem.title}
-                            fill
-                            className="object-cover"
-                          />
+                        <div className="relative h-44 w-full overflow-hidden rounded-2xl mb-4 bg-gray-100">
+                          <video
+                            ref={(el) => {
+                              mobileVideoRefs.current[index] = el;
+                            }}
+                            muted
+                            playsInline
+                            preload="metadata"
+                            className="h-full w-full object-cover"
+                          >
+                            <source src={problem.image} type="video/mp4" />
+                          </video>
                         </div>
+
                         <p className="text-gray-600 leading-relaxed text-sm font-inter">
                           {problem.description}
                         </p>

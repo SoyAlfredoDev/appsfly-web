@@ -43,6 +43,10 @@ export default function Footer() {
       <path d="M21 8.5a7.5 7.5 0 01-4.5-1.5v6.75a6.25 6.25 0 11-6.25-6.25c.2 0 .4.02.6.05v3.05a3.25 3.25 0 102.65 3.2V2h3a4.5 4.5 0 004.5 4.5v2z" />
     </svg>
   );
+  const phoneNumber = "56935784716";
+  const message =
+    "Hola, me gustaría solicitar una cotización de sus productos.";
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   return (
     <footer aria-label="Pie de página" className="bg-dark text-white">
@@ -72,7 +76,7 @@ export default function Footer() {
               <div className="space-y-4 text-sm text-white/60">
                 <div className="flex items-start gap-3">
                   <Building2 className="mt-0.5 h-4 w-4 text-primary" />
-                  <span>Servicios Tecnológicos Appsfly SpA</span>
+                  <span>Tecnología y Servicios Appsfly SpA</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <FileBadge className="mt-0.5 h-4 w-4 text-primary" />
@@ -92,11 +96,11 @@ export default function Footer() {
                 <div className="flex items-start gap-3">
                   <MessageCircle className="mt-0.5 h-4 w-4 text-primary" />
                   <a
-                    href="https://wa.me/353838316917"
+                    href={whatsappUrl}
                     target="_blank"
                     className="transition hover:text-white"
                   >
-                    +353 83 831 6917
+                    +56 9 3578 4716
                   </a>
                 </div>
               </div>

@@ -5,6 +5,10 @@ import { useEffect, useState } from "react";
 
 export default function WhatsAppButton() {
   const [isVisible, setIsVisible] = useState(false);
+  const phoneNumber = "56935784716";
+  const message =
+    "Hola, me gustaría solicitar una cotización de sus productos.";
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   useEffect(() => {
     // Small delay to ensure smooth entry after page load
@@ -16,7 +20,7 @@ export default function WhatsAppButton() {
 
   return (
     <motion.a
-      href="https://wa.me/353838316917"
+      href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"

@@ -84,11 +84,21 @@ export default function ReviewsSection() {
           <h2 className="mb-4 text-3xl font-bold tracking-tight text-dark md:text-4xl font-chillax">
             Lo que dicen nuestros clientes
           </h2>
-
-          <p className="text-lg text-gray-600 font-inter">
-            Valoraciones reales basadas en experiencias de clientes que ya han
-            trabajado con nosotros.
-          </p>
+          <div className="flex justify-center">
+            <div className="my-auto">
+              <p className="text-lg text-gray-600 font-inter">
+                Valoraciones reales basadas en experiencias de clientes que ya
+                han trabajado con nosotros.
+              </p>
+            </div>
+            <video
+              src="/videos/download.mp4"
+              className="w-[180px] justify-center"
+              autoPlay
+              loop
+              muted
+            ></video>
+          </div>
         </motion.div>
 
         {/* Rating summary */}

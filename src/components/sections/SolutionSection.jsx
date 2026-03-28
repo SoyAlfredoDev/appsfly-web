@@ -111,6 +111,10 @@ export default function SolutionSection() {
                   <p className="text-gray-600 leading-relaxed font-inter text-sm md:text-base">
                     {solution.description}
                   </p>
+
+                  <button className="my-4 w-full rounded-xl bg-[#12d18e] px-6 py-3 font-bold text-white shadow-md transition-all duration-300 hover:bg-[#0db67a]/90 hover:shadow-lg">
+                    Ver más
+                  </button>
                 </div>
               </motion.article>
             );

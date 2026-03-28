@@ -55,7 +55,7 @@ export default function PortfolioSection() {
     <section
       id="portfolio"
       aria-label="Portafolio y trabajos realizados"
-      className="relative overflow-hidden py-20 md:py-24 bg-[#021f41]"
+      className="relative overflow-hidden py-20 md:py-24 bg-secondary"
     >
       {/* --- FONDO CON IMAGEN Y TONO AZUL --- */}
       <div className="absolute inset-0 z-0">
@@ -67,7 +67,7 @@ export default function PortfolioSection() {
           priority
         />
         {/* Overlay Azul #094fd1 con mezcla para acabado profesional */}
-        <div className="absolute inset-0 bg-[#094fd1]/60 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-secondary/60 mix-blend-multiply" />
       </div>
 
       {/* Gradientes decorativos sutiles */}

@@ -79,7 +79,7 @@ export default function ServicesSection() {
     <section
       id="services"
       aria-label="Servicios de desarrollo web, e-commerce y automatización"
-      className="relative overflow-hidden bg-background py-24"
+      className="relative overflow-hidden py-24"
     >
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-0 top-16 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
@@ -146,7 +146,12 @@ export default function ServicesSection() {
                   <ul className="mb-8 space-y-3">
                     {service.points.map((point) => (
                       <li key={point} className="flex items-start gap-3">
-                        <span className="mt-1 inline-block h-2.5 w-2.5 rounded-full bg-primary" />
+                        <Image
+                          src="/images/blue-arrow-right.png"
+                          alt="Check"
+                          width={20}
+                          height={20}
+                        />
                         <span className="text-dark/80">{point}</span>
                       </li>
                     ))}
@@ -154,7 +159,7 @@ export default function ServicesSection() {
 
                   <button
                     type="button"
-                    className="group inline-flex items-center gap-2 rounded-2xl bg-primary px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/20"
+                    className="group inline-flex items-center gap-2 rounded-2xl bg-secondary px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/20"
                   >
                     {service.buttonText}
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

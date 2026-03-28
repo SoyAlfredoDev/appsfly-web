@@ -214,7 +214,7 @@ export default function ContactSection() {
               whileInView="show"
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.65 }}
-              className="rounded-[24px] border border-border bg-dark p-6 shadow-lg"
+              className="rounded-[24px] border border-border bg-secondary  p-6 shadow-lg"
             >
               <form onSubmit={handleSubmit} noValidate className="space-y-4">
                 {/* Nombre */}
@@ -377,7 +377,7 @@ export default function ContactSection() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-70 disabled:hover:translate-y-0"
+                  className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-70 disabled:hover:translate-y-0"
                 >
                   {isSubmitting ? "Enviando..." : "Enviar solicitud"}
                   {!isSubmitting && (
