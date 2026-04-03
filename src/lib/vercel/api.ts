@@ -8,14 +8,19 @@ interface FetchVercelParams {
   body?: any;
 }
 
-async function fetchFromVercel({ endpoint, method = "GET", body }: FetchVercelParams) {
+async function fetchFromVercel({
+  endpoint,
+  method = "GET",
+  body,
+}: FetchVercelParams) {
   const token = process.env.VERCEL_API_TOKEN;
   if (!token) {
     throw new Error("VERCEL_API_TOKEN no configurado en variables de entorno");
   }
+  console.log("token", token);
 
   const url = `${VERCEL_API_URL}${endpoint}`;
-  
+
   const headers: HeadersInit = {
     Authorization: `Bearer ${token}`,
     "Content-Type": "application/json",
@@ -36,6 +41,7 @@ async function fetchFromVercel({ endpoint, method = "GET", body }: FetchVercelPa
     const errorText = await response.text();
     throw new Error(`Error en API Vercel (${response.status}): ${errorText}`);
   }
+  console.log("response.json()", response.json());
 
   return response.json();
 }
@@ -46,7 +52,7 @@ async function fetchFromVercel({ endpoint, method = "GET", body }: FetchVercelPa
 export async function getDeployments(limit = 10): Promise<DeploymentEntry[]> {
   const projectId = process.env.VERCEL_PROJECT_ID;
   const teamId = process.env.VERCEL_TEAM_ID;
-  
+
   if (!projectId) {
     console.warn("VERCEL_PROJECT_ID no configurado");
     return [];
@@ -59,7 +65,7 @@ export async function getDeployments(limit = 10): Promise<DeploymentEntry[]> {
 
   try {
     const data = await fetchFromVercel({ endpoint });
-    
+
     if (!data || !data.deployments || !Array.isArray(data.deployments)) {
       return [];
     }
@@ -85,7 +91,7 @@ export async function getDeployments(limit = 10): Promise<DeploymentEntry[]> {
 export async function getProjectInfo(): Promise<any> {
   const projectId = process.env.VERCEL_PROJECT_ID;
   const teamId = process.env.VERCEL_TEAM_ID;
-  
+
   if (!projectId) {
     console.warn("VERCEL_PROJECT_ID no configurado");
     return null;

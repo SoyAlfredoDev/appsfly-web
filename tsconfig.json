@@ -33,7 +33,8 @@
     "src/components/sections/SolutionSection.jsx",
     "src/components/sections/ServicesSection.jsx",
     "src/components/sections/HeroSection.jsx",
-    "src/components/sections/PortfolioSection.jsx"
+    "src/components/sections/PortfolioSection.tsx",
+    "src/components/sections/PricingSection.Jsx"
   ],
   "exclude": ["node_modules"]
 }

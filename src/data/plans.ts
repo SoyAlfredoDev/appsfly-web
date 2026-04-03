@@ -1,0 +1,75 @@
+import { Plan } from "@/types/plan";
+
+export const plans: Plan[] = [
+  {
+    id: "P001",
+    name: "Landing Esencial",
+    price: 180000,
+    iva: 34200,
+    highlight: false,
+    results: [
+      "Presencia online profesional desde el día 1",
+      "Generación de primeros contactos y consultas",
+      "Mejora inmediata de la imagen de tu negocio",
+    ],
+    features: [
+      "Landing page optimizada (hasta 5 secciones)",
+      "Diseño moderno y responsive",
+      "Integración básica con formulario o WhatsApp",
+      "Estructura enfocada en conversión",
+      "Optimización básica de velocidad",
+    ],
+    cta: "Comenzar ahora",
+    linkCheckout: "/checkout/P001",
+    linkMercadoPago: "https://mpago.li/2QL6Ht9",
+  },
+  {
+    id: "P002",
+    name: "Landing Pro",
+    price: 390000,
+    iva: 74100,
+    highlight: true,
+    results: [
+      "Aumento en la generación de leads",
+      "Mayor confianza y percepción profesional",
+      "Mejor conversión de visitas en clientes",
+    ],
+    features: [
+      "Landing page optimizada (hasta 8 secciones)",
+      "Sección de testimonios",
+      "Sección de servicios o portafolio",
+      "Integración con WhatsApp y Calendar",
+      "Optimización avanzada de velocidad",
+      "Mejora UX/UI enfocada en conversión",
+    ],
+    cta: "Quiero este plan",
+    linkCheckout: "/checkout/P002",
+    linkMercadoPago: "https://mpago.li/2QL6Ht9",
+  },
+  {
+    id: "P003",
+    name: "Website Profesional",
+    price: 800000,
+    iva: 152000,
+    highlight: false,
+    results: [
+      "Sistema digital completo para captar clientes",
+      "Automatización inicial de procesos",
+      "Base sólida para escalar tu negocio online",
+    ],
+    features: [
+      "Sitio web completo (hasta 15 secciones)",
+      "Estructura avanzada",
+      "Formularios avanzados de captación",
+      "Integración con WhatsApp",
+      "SEO técnico inicial",
+      "Google Analytics y Google Maps",
+      "Dominio incluido",
+      "Panel básico de gestión de clientes",
+    ],
+    cta: "Escalar mi negocio",
+    linkCheckout: "/checkout/P003",
+    linkMercadoPago: "https://mpago.li/2QL6Ht9",
+  },
+];
+

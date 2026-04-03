@@ -4,70 +4,8 @@ import { motion } from "framer-motion";
 import { Check, ArrowRight, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Badge from "../ui/badge";
-
-export const plans = [
-  {
-    name: "Landing Esencial",
-    price: "$180.000",
-    iva: "+ IVA",
-    highlight: false,
-    results: [
-      "Presencia online profesional desde el día 1",
-      "Generación de primeros contactos y consultas",
-      "Mejora inmediata de la imagen de tu negocio",
-    ],
-    features: [
-      "Landing page optimizada (hasta 5 secciones)",
-      "Diseño moderno y responsive",
-      "Integración básica con formulario o WhatsApp",
-      "Estructura enfocada en conversión",
-      "Optimización básica de velocidad",
-    ],
-    cta: "Comenzar ahora",
-  },
-  {
-    name: "Landing Pro",
-    price: "$390.000",
-    iva: "+ IVA",
-    highlight: true,
-    results: [
-      "Aumento en la generación de leads",
-      "Mayor confianza y percepción profesional",
-      "Mejor conversión de visitas en clientes",
-    ],
-    features: [
-      "Landing page optimizada (hasta 8 secciones)",
-      "Sección de testimonios",
-      "Sección de servicios o portafolio",
-      "Integración con WhatsApp y Calendar",
-      "Optimización avanzada de velocidad",
-      "Mejora UX/UI enfocada en conversión",
-    ],
-    cta: "Quiero este plan",
-  },
-  {
-    name: "Website Profesional",
-    price: "$800.000",
-    iva: "+ IVA",
-    highlight: false,
-    results: [
-      "Sistema digital completo para captar clientes",
-      "Automatización inicial de procesos",
-      "Base sólida para escalar tu negocio online",
-    ],
-    features: [
-      "Sitio web completo (hasta 15 secciones)",
-      "Estructura avanzada",
-      "Formularios avanzados de captación",
-      "Integración con WhatsApp",
-      "SEO técnico inicial",
-      "Google Analytics y Google Maps",
-      "Dominio incluido",
-      "Panel básico de gestión de clientes",
-    ],
-    cta: "Escalar mi negocio",
-  },
-];
+import { plans } from "@/data/plans";
+import Link from "next/link";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -137,7 +75,7 @@ export default function PricingSection() {
 
                 <div className="flex items-end gap-2">
                   <span className="text-2xl font-bold tracking-tight">
-                    {plan.price}
+                    ${plan.price.toLocaleString("es-CL")}
                   </span>
 
                   <span
@@ -145,7 +83,7 @@ export default function PricingSection() {
                       plan.highlight ? "text-white/65" : "text-gray-500"
                     }`}
                   >
-                    {plan.iva}
+                    + IVA
                   </span>
                 </div>
               </div>
@@ -214,15 +152,15 @@ export default function PricingSection() {
               </div>
 
               <div className="mt-auto pb-1">
-                <button
-                  type="button"
+                <Link
+                  href={plan.linkCheckout}
                   className={`group flex w-full items-center ${
                     plan.highlight ? "btn-base btn-green" : "btn-base btn-blue"
                   }`}
                 >
                   {plan.cta}
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </button>
+                </Link>
               </div>
             </motion.article>
           ))}
