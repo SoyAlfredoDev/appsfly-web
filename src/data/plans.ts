@@ -3,9 +3,9 @@ import { Plan } from "@/types/plan";
 export const plans: Plan[] = [
   {
     id: "P001",
-    name: "Landing Esencial",
-    price: 180000,
-    iva: 34200,
+    name: "Landing Esencial®",
+    price: 170000,
+    iva: 32300,
     highlight: false,
     results: [
       "Presencia online profesional desde el día 1",
@@ -25,9 +25,9 @@ export const plans: Plan[] = [
   },
   {
     id: "P002",
-    name: "Landing Pro",
-    price: 390000,
-    iva: 74100,
+    name: "Landing Pro®",
+    price: 350000,
+    iva: 66500,
     highlight: true,
     results: [
       "Aumento en la generación de leads",
@@ -44,11 +44,11 @@ export const plans: Plan[] = [
     ],
     cta: "Quiero este plan",
     linkCheckout: "/checkout/P002",
-    linkMercadoPago: "https://mpago.li/2QL6Ht9",
+    linkMercadoPago: "https://mpago.la/2T3zyXS",
   },
   {
     id: "P003",
-    name: "Website Profesional",
+    name: "Website Profesional®",
     price: 800000,
     iva: 152000,
     highlight: false,
@@ -69,7 +69,6 @@ export const plans: Plan[] = [
     ],
     cta: "Escalar mi negocio",
     linkCheckout: "/checkout/P003",
-    linkMercadoPago: "https://mpago.li/2QL6Ht9",
+    linkMercadoPago: "https://mpago.la/1qSHzsW",
   },
 ];
-
