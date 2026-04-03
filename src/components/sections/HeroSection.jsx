@@ -71,19 +71,6 @@ export default function HeroSection() {
       <div className="pointer-events-none absolute inset-0 -z-10 sm:hidden">
         {/* Imagen decorativa para móvil pequeño */}
         <div className="pointer-events-none absolute inset-0 -z-10 sm:hidden overflow-hidden">
-          <Image
-            src="/images/bg-hero-sm.png"
-            alt=""
-            fill
-            priority
-            style={{
-              objectFit: "cover",
-              objectPosition: "center",
-              opacity: 0.92,
-              filter: "grayscale(1) brightness(1.1) contrast(0.95)",
-            }}
-          />
-
           <div
             className="absolute inset-0"
             style={{
@@ -155,7 +142,7 @@ export default function HeroSection() {
             >
               <Link
                 href="#contact"
-                className="btn-base btn-primary group w-[85%] md:w-full"
+                className="btn-base btn-green group w-[85%] md:w-full"
               >
                 Hablemos de tu proyecto
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -163,7 +150,7 @@ export default function HeroSection() {
 
               <Link
                 href="#services"
-                className="btn-base btn-outline w-[85%] md:w-full"
+                className="btn-base btn-white w-[85%] md:w-full"
               >
                 Ver servicios
               </Link>

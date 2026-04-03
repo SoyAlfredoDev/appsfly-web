@@ -70,8 +70,8 @@ export function Navigation() {
       transition={{ duration: 0.35, ease: "easeInOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
         isScrolled
-          ? "bg-white/80 backdrop-blur-md shadow-sm py-3"
-          : "bg-transparent py-5"
+          ? "bg-white/80 backdrop-blur-md shadow-sm py-1"
+          : "bg-transparent py-1"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
@@ -106,7 +106,7 @@ export function Navigation() {
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, "#contact")}
-            className="btn-primary"
+            className="btn-base btn-green"
           >
             Hablemos
           </a>
@@ -116,7 +116,7 @@ export function Navigation() {
         <div className="lg:hidden">
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-[var(--color-primary)] p-2 rounded-xl hover:bg-gray-100 transition-colors"
+            className="text-[var(--color-secondary)] p-2 rounded-xl hover:bg-gray-100 transition-colors"
             aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}

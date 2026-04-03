@@ -9,6 +9,7 @@ import {
   Clock,
   ChevronDown,
 } from "lucide-react";
+import Badge from "../ui/badge";
 
 const problems = [
   {
@@ -111,7 +112,7 @@ export default function ProblemSection() {
   return (
     <section
       id="problem"
-      className="relative overflow-hidden py-24 bg-[#021f41]"
+      className="relative overflow-hidden py-16 bg-[#021f41] h-screen"
     >
       {/* Fondo */}
       <div className="absolute inset-0 z-0">
@@ -119,11 +120,11 @@ export default function ProblemSection() {
           src="/images/bg-problem.jpg"
           alt="Background"
           fill
-          className="object-cover opacity-40"
+          className="object-cover opacity-50"
           priority
         />
         <div
-          className="absolute inset-0 bg-[#01c676]/60 mix-blend-multiply"
+          className="absolute inset-0 bg-gradient-to-b from-[#01c676]/30 to-[#01c676]/10 mix-blend-multiply"
           aria-hidden="true"
         />
       </div>
@@ -141,12 +142,10 @@ export default function ProblemSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-8"
         >
-          <p className="mb-4 inline-flex items-center rounded-full bg-white px-4 py-1.5 text-sm font-bold text-red-600 shadow-sm">
-            Problema
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-chillax leading-tight">
+          <Badge title="Problema" color="red" />
+          <h2 className="text-xl md:text-3xl font-bold text-white mb-4 leading-12">
             Tu negocio podría estar perdiendo clientes por falta de presencia
             digital
           </h2>
@@ -169,7 +168,7 @@ export default function ProblemSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`group flex flex-col overflow-hidden rounded-[28px] border bg-white transition-all duration-300 ${
+                className={`group cursor-pointer flex flex-col overflow-hidden rounded-[28px] border bg-white transition-all duration-300 ${
                   isExpanded
                     ? "shadow-xl ring-2 ring-primary md:ring-white/20"
                     : "shadow-sm border-gray-100 hover:shadow-md"
@@ -182,7 +181,7 @@ export default function ProblemSection() {
                   <div className="flex items-center gap-4 md:contents">
                     {/* Video Desktop / Tablet */}
                     <div
-                      className="hidden md:block relative h-52 w-full overflow-hidden bg-gray-100"
+                      className="hidden cursor-pointer md:block relative h-52 w-full overflow-hidden bg-gray-100"
                       onMouseEnter={() =>
                         playVideo(desktopVideoRefs.current[index])
                       }
@@ -197,7 +196,7 @@ export default function ProblemSection() {
                         muted
                         playsInline
                         preload="metadata"
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="h-full cursor-pointer w-full object-cover transition-transform duration-700 group-hover:scale-105"
                       >
                         <source src={problem.image} type="video/mp4" />
                       </video>

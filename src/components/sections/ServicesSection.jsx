@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Globe, ShoppingCart, Bot } from "lucide-react";
 import Image from "next/image";
+import Badge from "../ui/badge";
 
 const services = [
   {
@@ -79,7 +80,7 @@ export default function ServicesSection() {
     <section
       id="services"
       aria-label="Servicios de desarrollo web, e-commerce y automatización"
-      className="relative overflow-hidden py-24"
+      className="relative overflow-hidden py-8"
     >
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-0 top-16 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
@@ -92,25 +93,23 @@ export default function ServicesSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          className="mx-auto mb-20 max-w-3xl text-center"
+          className="mx-auto mb-8 md:mb-12 max-w-3xl text-center"
         >
-          <p className="mb-4 inline-flex rounded-full bg-secondary/10 px-4 py-1.5 text-sm font-semibold text-secondary">
-            Nuestros servicios
-          </p>
+          <Badge title="Nuestros servicios" color="blueLight" />
 
-          <h2 className="mb-5 text-3xl font-bold tracking-tight text-dark md:text-4xl">
+          <h2 className="text-xl md:text-3xl font-bold text-secondary mb-4 leading-8 lg:leading-12">
             Desarrollo web, tiendas online y automatización para ayudarte a
             vender más y crecer
           </h2>
 
-          <p className="text-lg leading-relaxed text-text-secondary">
+          <p className="text-sm md:text-lg text-gray-600 leading-relaxed">
             No ofrecemos servicios genéricos. Diseñamos soluciones que buscan
             resolver necesidades reales de tu negocio y mejorar tu presencia
             digital.
           </p>
         </motion.div>
 
-        <div className="space-y-24">
+        <div className="space-y-8">
           {services.map((service, index) => {
             const Icon = service.icon;
             const isReverse = index % 2 === 1;
@@ -127,7 +126,7 @@ export default function ServicesSection() {
                 whileInView="show"
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ delay: index * 0.08 }}
-                className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16"
+                className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16 bg-accent p-5 rounded-xl"
               >
                 <div className={isReverse ? "lg:order-2" : ""}>
                   <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-white px-4 py-2 text-sm font-medium text-dark shadow-sm">
@@ -135,11 +134,11 @@ export default function ServicesSection() {
                     {service.badge}
                   </div>
 
-                  <h3 className="mb-5 max-w-xl text-2xl font-bold leading-tight text-dark md:text-3xl">
+                  <h3 className="mb-5 max-w-xl text-lg font-bold leading-tight text-dark md:text-xl">
                     {service.title}
                   </h3>
 
-                  <p className="mb-6 max-w-xl text-base leading-relaxed text-text-secondary md:text-lg">
+                  <p className="mb-6 max-w-xl text-base leading-relaxed text-text-secondary md:text-md">
                     {service.description}
                   </p>
 
@@ -157,10 +156,7 @@ export default function ServicesSection() {
                     ))}
                   </ul>
 
-                  <button
-                    type="button"
-                    className="group inline-flex items-center gap-2 rounded-2xl bg-secondary px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/20"
-                  >
+                  <button type="button" className="btn-base btn-blue">
                     {service.buttonText}
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </button>

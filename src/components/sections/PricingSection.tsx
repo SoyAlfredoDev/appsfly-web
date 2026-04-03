@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Check, ArrowRight, Sparkles } from "lucide-react";
 import Image from "next/image";
+import Badge from "../ui/badge";
 
 export const plans = [
   {
@@ -75,30 +76,26 @@ const fadeUp = {
 
 export default function PricingSection() {
   return (
-    <section id="pricing" className="relative overflow-hidden bg-white py-20">
-      <div className="pointer-events-none absolute inset-0">
+    <section id="pricing" className="relative overflow-hidden bg-white py-12">
+      <div className="pointer-events-none absolute inset-0 bg-gray-200">
         <div className="absolute left-0 top-20 h-72 w-72 rounded-full bg-[#01c676]/5 blur-3xl" />
         <div className="absolute bottom-12 right-0 h-80 w-80 rounded-full bg-[#094fd1]/5 blur-3xl" />
       </div>
-
-      <div className="relative mx-auto max-w-7xl px-6">
+      <div className="relative mx-auto max-w-7xl px-6 ">
         <motion.div
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.55 }}
-          className="mx-auto mb-12 max-w-3xl text-center"
+          className="mx-auto mb-12 max-w-3xl text-center "
         >
-          <p className="mb-4 inline-flex rounded-full bg-[#01c676]/10 px-4 py-1.5 text-sm font-semibold text-[#01c676]">
-            Planes y precios
-          </p>
-
-          <h2 className="mb-4 font-chillax text-3xl font-bold tracking-tight text-[#021f41] md:text-5xl">
+          <Badge title="Planes y precios" color="blueLight" />
+          <h2 className="text-xl md:text-3xl font-bold text-secondary mb-4 leading-8 lg:leading-12">
             Elige cómo impulsar tu negocio
           </h2>
 
-          <p className="font-inter text-base text-gray-600 md:text-lg">
+          <p className="text-sm md:text-lg text-gray-600 leading-relaxed">
             Soluciones diseñadas para ayudarte a convertir visitas en clientes.
           </p>
         </motion.div>
@@ -112,7 +109,7 @@ export default function PricingSection() {
               whileInView="show"
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
-              className={`relative flex min-w-[86vw] snap-center flex-col rounded-[28px] border px-6 py-6 transition-all duration-300 sm:min-w-[360px] lg:min-w-full ${
+              className={`relative flex min-w-[86vw] snap-center flex-col rounded-[28px] border px-6 py-4 transition-all duration-300 sm:min-w-[360px] lg:min-w-full ${
                 plan.highlight
                   ? "z-10 border-[#01c676] bg-[#021f41] text-white shadow-[0_18px_50px_rgba(1,198,118,0.18)] lg:-translate-y-1"
                   : "border-gray-100 bg-white text-[#021f41] shadow-[0_10px_30px_rgba(2,31,65,0.06)] hover:border-[#01c676]/20 hover:shadow-[0_16px_36px_rgba(2,31,65,0.10)]"
@@ -131,15 +128,15 @@ export default function PricingSection() {
                 }`}
               >
                 <h3
-                  className={`mb-3 font-chillax text-2xl font-bold ${
-                    plan.highlight ? "text-white" : "text-[#021f41]"
+                  className={`mb-1 font-chillax text-xl font-bold ${
+                    plan.highlight ? "text-white" : "text-primary"
                   }`}
                 >
                   {plan.name}
                 </h3>
 
-                <div className="flex items-end gap-2.5">
-                  <span className="text-4xl font-bold tracking-tight">
+                <div className="flex items-end gap-2">
+                  <span className="text-2xl font-bold tracking-tight">
                     {plan.price}
                   </span>
 
@@ -151,17 +148,9 @@ export default function PricingSection() {
                     {plan.iva}
                   </span>
                 </div>
-
-                <p
-                  className={`mt-1.5 text-sm ${
-                    plan.highlight ? "text-white/50" : "text-gray-400"
-                  }`}
-                >
-                  Pago único por proyecto
-                </p>
               </div>
 
-              <div className="mb-5">
+              <div className="mb-4">
                 <p
                   className={`mb-3 text-[11px] font-bold uppercase tracking-[0.16em] ${
                     plan.highlight ? "text-white/70" : "text-[#021f41]"
@@ -196,7 +185,7 @@ export default function PricingSection() {
               >
                 <p
                   className={`mb-3 text-[11px] font-bold uppercase tracking-[0.16em] ${
-                    plan.highlight ? "text-[#01c676]" : "text-[#094fd1]"
+                    plan.highlight ? "text-[#01c676]" : "text-secondary"
                   }`}
                 >
                   Resultados esperados
@@ -224,13 +213,11 @@ export default function PricingSection() {
                 </ul>
               </div>
 
-              <div className="mt-auto pt-1">
+              <div className="mt-auto pb-1">
                 <button
                   type="button"
-                  className={`group flex w-full items-center justify-center gap-2 rounded-2xl py-3.5 text-sm font-bold transition-all duration-300 ${
-                    plan.highlight
-                      ? "bg-[#01c676] text-white hover:bg-[#00b86a]"
-                      : "bg-[#021f41] text-white hover:bg-[#094fd1]"
+                  className={`group flex w-full items-center ${
+                    plan.highlight ? "btn-base btn-green" : "btn-base btn-blue"
                   }`}
                 >
                   {plan.cta}

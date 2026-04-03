@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Star, ExternalLink } from "lucide-react";
+import Badge from "../ui/badge";
 
 type Review = {
   name: string;
@@ -77,9 +78,7 @@ export default function ReviewsSection() {
           transition={{ duration: 0.6 }}
           className="mx-auto mb-10 max-w-3xl text-center md:mb-14"
         >
-          <p className="mb-4 inline-flex rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
-            Opiniones de clientes
-          </p>
+          <Badge title="Soluciones" color="blueLight" />
 
           <h2 className="mb-4 text-3xl font-bold tracking-tight text-dark md:text-4xl font-chillax">
             Lo que dicen nuestros clientes
@@ -97,7 +96,8 @@ export default function ReviewsSection() {
               autoPlay
               loop
               muted
-            ></video>
+              playsInline
+            />
           </div>
         </motion.div>
 

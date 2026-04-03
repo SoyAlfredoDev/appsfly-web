@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink } from "lucide-react";
+import Badge from "../ui/badge";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -55,7 +56,7 @@ export default function PortfolioSection() {
     <section
       id="portfolio"
       aria-label="Portafolio y trabajos realizados"
-      className="relative overflow-hidden py-20 md:py-24 bg-secondary"
+      className="relative overflow-hidden py-8 bg-secondary min-h-screen"
     >
       {/* --- FONDO CON IMAGEN Y TONO AZUL --- */}
       <div className="absolute inset-0 z-0">
@@ -84,11 +85,9 @@ export default function PortfolioSection() {
           viewport={{ once: true, amount: 0.2 }}
           className="mx-auto mb-14 max-w-3xl text-center md:mb-16"
         >
-          <p className="mb-4 inline-flex rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold text-white backdrop-blur-sm border border-white/20">
-            Portafolio
-          </p>
+          <Badge title="Portafolio" color="white" />
 
-          <h2 className="mb-5 text-3xl font-bold tracking-tight text-white md:text-4xl font-chillax">
+          <h2 className="text-xl md:text-3xl font-bold text-white mb-4 leading-8 lg:leading-12">
             Algunos trabajos y proyectos realizados
           </h2>
 
@@ -100,7 +99,7 @@ export default function PortfolioSection() {
         </motion.div>
 
         {/* Grid / Snap Scroll Container */}
-        <div className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0">
+        <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory hide-scrollbar lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0">
           {portfolioItems.map((item, index) => (
             <motion.article
               key={item.id}
@@ -112,7 +111,7 @@ export default function PortfolioSection() {
               className="group relative flex flex-col overflow-hidden rounded-[28px] border border-white/10 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(0,0,0,0.3)] 
               min-w-[85vw] sm:min-w-[400px] lg:min-w-full snap-center"
             >
-              <div className="relative aspect-[16/10] overflow-hidden">
+              <div className="relative aspect-[20/10] overflow-hidden">
                 <Image
                   src={item.image}
                   alt={item.alt}
@@ -129,7 +128,7 @@ export default function PortfolioSection() {
               </div>
 
               <div className="flex flex-1 flex-col p-6">
-                <h3 className="text-xl font-bold leading-tight text-[#021f41] font-chillax">
+                <h3 className="text-lg font-bold leading-tight text-[#021f41] font-chillax">
                   {item.title}
                 </h3>
 
@@ -140,7 +139,7 @@ export default function PortfolioSection() {
                 <Link
                   href={item.href}
                   target="_blank"
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#094fd1] transition-colors duration-300 hover:text-[#01c676]"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-secondary transition-colors duration-300 hover:text-[#01c676]"
                 >
                   Ver proyecto
                   <ExternalLink className="h-4 w-4" />
@@ -164,10 +163,7 @@ export default function PortfolioSection() {
           viewport={{ once: true, amount: 0.2 }}
           className="mt-12 flex justify-center md:mt-16"
         >
-          <Link
-            href="#contact"
-            className="group inline-flex items-center gap-2 rounded-2xl bg-[#01c676] px-8 py-4 text-sm font-bold text-white shadow-[0_16px_40px_rgba(1,198,118,0.25)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#094fd1] hover:shadow-[0_20px_46px_rgba(9,79,209,0.3)]"
-          >
+          <Link href="#contact" className="btn-base btn-white">
             Empezar mi proyecto
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>

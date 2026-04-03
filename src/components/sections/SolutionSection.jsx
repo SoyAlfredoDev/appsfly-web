@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Globe, Bot, Blocks } from "lucide-react";
+import Badge from "../ui/badge";
 
 export default function SolutionSection() {
   const solutions = [
@@ -35,12 +36,11 @@ export default function SolutionSection() {
     <section
       id="solutions"
       aria-label="Soluciones digitales para tu negocio"
-      className="relative overflow-hidden py-24 bg-white"
+      className="relative pt-12 pb-4 md:py-16 bg-gray-50 min-h-screen bg-gray-70"
     >
-      {/* Decorative gradients */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[-80px] top-16 h-72 w-72 rounded-full bg-primary/5 blur-3xl" />
-        <div className="absolute right-[-60px] bottom-10 h-64 w-64 rounded-full bg-secondary/5 blur-3xl" />
+        <div className="absolute left-0 top-16 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
+        <div className="absolute bottom-10 right-0 h-80 w-80 rounded-full bg-accent/20 blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6">
@@ -52,15 +52,13 @@ export default function SolutionSection() {
           viewport={{ once: true }}
           className="max-w-3xl mx-auto text-center mb-12"
         >
-          <p className="mb-4 inline-flex rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
-            Soluciones
-          </p>
+          <Badge title="Soluciones" color="blueLight" />
 
-          <h2 className="text-3xl md:text-4xl font-bold text-dark mb-4 font-chillax">
+          <h2 className="text-xl md:text-3xl font-bold text-secondary mb-4 leading-8 md:leading-12 lg:leading-16">
             La tecnología adecuada puede transformar tu negocio
           </h2>
 
-          <p className="text-lg text-gray-600 font-inter">
+          <p className="text-sm md:text-lg text-gray-600 leading-relaxed">
             No se trata solo de tener presencia digital, sino de contar con
             herramientas que te ayuden a captar clientes y trabajar con más
             eficiencia.
@@ -112,7 +110,7 @@ export default function SolutionSection() {
                     {solution.description}
                   </p>
 
-                  <button className="my-4 w-full rounded-xl bg-[#12d18e] px-6 py-3 font-bold text-white shadow-md transition-all duration-300 hover:bg-[#0db67a]/90 hover:shadow-lg">
+                  <button className="my-4 w-full mb-3 btn-base btn-green">
                     Ver más
                   </button>
                 </div>
@@ -124,7 +122,7 @@ export default function SolutionSection() {
         {/* Indicador visual para móvil (Dots) */}
         <div className="mt-8 flex justify-center gap-1.5 lg:hidden">
           {solutions.map((_, i) => (
-            <div key={i} className="h-1 w-4 rounded-full bg-primary/20" />
+            <div key={i} className="h-1 w-4 rounded-full bg-primary/40" />
           ))}
         </div>
       </div>

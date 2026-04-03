@@ -12,6 +12,7 @@ import {
 import { sendEmail } from "@/lib/email/sendEmail";
 import { contactRequestEmailTemplate } from "@/emails/contactRequestEmailTemplate";
 import { useState } from "react";
+import Badge from "../ui/badge";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -158,9 +159,7 @@ export default function ContactSection() {
               transition={{ duration: 0.6 }}
               className="pt-2"
             >
-              <p className="mb-4 inline-flex rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
-                Contacto
-              </p>
+              <Badge title="Planes y precios" color="blueLight" />
               <h2 className="mb-5 text-3xl font-bold tracking-tight text-dark md:text-4xl">
                 Cotiza tu proyecto web — Hablemos
               </h2>
