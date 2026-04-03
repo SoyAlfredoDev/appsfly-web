@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
+  console.log("🔔 Webhook recibido:");
+  console.log("🔔 Webhook recibido:");
+  console.log("🔔 Webhook recibido:");
   try {
     // Obtener body
     const body = await req.json();
