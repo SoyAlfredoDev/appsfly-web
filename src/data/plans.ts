@@ -44,7 +44,7 @@ export const plans: Plan[] = [
     ],
     cta: "Quiero este plan",
     linkCheckout: "/checkout/P002",
-    linkMercadoPago: "https://mpago.la/2T3zyXS",
+    linkMercadoPago: "https://mpago.li/2Px5Wsr",
   },
   {
     id: "P003",

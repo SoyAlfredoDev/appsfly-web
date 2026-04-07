@@ -1,22 +1,123 @@
 "use client";
 
-import { use, useState } from "react";
+import { use, useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import InputForm from "@/components/ui/inputForm";
 import SelectedPlanCard from "@/components/checkout/SelectedPlanCard";
 import { plans } from "@/data/plans";
 
-type DocumentType = "boleta" | "factura";
-
 type Props = {
   params: Promise<{ id: string }>;
 };
 
-export default function CheckoutPage({ params }: Props) {
-  const [documentType, setDocumentType] = useState<DocumentType>("boleta");
+type FieldRequired = {
+  documentType: "boleta" | "factura";
+  nombre: string;
+  email: string;
+  telefono: string;
+  negocio: string;
+  rutEmpresa: string;
+  razonSocial: string;
+  giro: string;
+  comuna: string;
+  direccion: string;
+  comentarios: string;
+};
 
+export default function CheckoutPage({ params }: Props) {
   const { id: planId } = use(params);
   const planSelected = plans.find((plan) => plan.id === planId);
+
+  const [acceptTerms, setAcceptTerms] = useState(false);
+  const [fieldRequired, setFieldRequired] = useState<FieldRequired>({
+    documentType: "boleta",
+    nombre: "",
+    email: "",
+    telefono: "",
+    negocio: "",
+    rutEmpresa: "",
+    razonSocial: "",
+    giro: "",
+    comuna: "",
+    direccion: "",
+    comentarios: "",
+  });
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+
+  const handleFieldRequired = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+
+    setFieldRequired((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleAcceptTerms = () => {
+    setAcceptTerms((prev) => !prev);
+  };
+
+  const requiredFields = useMemo(() => {
+    const commonFields: (keyof FieldRequired)[] = [
+      "nombre",
+      "email",
+      "telefono",
+      "negocio",
+    ];
+
+    const facturaFields: (keyof FieldRequired)[] = [
+      "rutEmpresa",
+      "razonSocial",
+      "giro",
+      "comuna",
+      "direccion",
+    ];
+
+    return fieldRequired.documentType === "factura"
+      ? [...commonFields, ...facturaFields]
+      : commonFields;
+  }, [fieldRequired.documentType]);
+
+  const missingFields = useMemo(() => {
+    return requiredFields.filter((field) => {
+      const value = fieldRequired[field];
+      return typeof value === "string" && value.trim() === "";
+    });
+  }, [fieldRequired, requiredFields]);
+
+  useEffect(() => {
+    setButtonDisabled(missingFields.length > 0);
+  }, [missingFields]);
+
+  const missingFieldsMessage = useMemo(() => {
+    const labels: Record<string, string> = {
+      nombre: "nombre y apellido",
+      email: "email",
+      telefono: "teléfono",
+      negocio: "nombre del negocio",
+      rutEmpresa: "RUT empresa",
+      razonSocial: "razón social",
+      giro: "giro",
+      comuna: "comuna",
+      direccion: "dirección comercial",
+    };
+
+    if (missingFields.length === 0) return "";
+
+    const names = missingFields.map((field) => labels[field]).filter(Boolean);
+
+    if (names.length === 1) {
+      return `Falta completar ${names[0]}.`;
+    }
+
+    if (names.length === 2) {
+      return `Faltan completar ${names[0]} y ${names[1]}.`;
+    }
+
+    return `Faltan completar ${names.length} campos obligatorios para continuar al pago.`;
+  }, [missingFields]);
 
   return (
     <main className="min-h-screen bg-slate-100 px-4 py-4 md:px-6 lg:px-8">
@@ -50,14 +151,21 @@ export default function CheckoutPage({ params }: Props) {
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <button
                     type="button"
-                    onClick={() => setDocumentType("boleta")}
+                    onClick={() =>
+                      setFieldRequired((prev) => ({
+                        ...prev,
+                        documentType: "boleta",
+                      }))
+                    }
                     className={`btn-base cursor-pointer text-left transition ${
-                      documentType === "boleta" ? "btn-green" : "btn-white"
+                      fieldRequired.documentType === "boleta"
+                        ? "btn-green"
+                        : "btn-white"
                     }`}
                   >
                     <p
                       className={`text-center text-sm font-semibold ${
-                        documentType === "boleta"
+                        fieldRequired.documentType === "boleta"
                           ? "text-white"
                           : "text-slate-900"
                       }`}
@@ -68,14 +176,21 @@ export default function CheckoutPage({ params }: Props) {
 
                   <button
                     type="button"
-                    onClick={() => setDocumentType("factura")}
+                    onClick={() =>
+                      setFieldRequired((prev) => ({
+                        ...prev,
+                        documentType: "factura",
+                      }))
+                    }
                     className={`btn-base cursor-pointer text-left transition ${
-                      documentType === "factura" ? "btn-green" : "btn-white"
+                      fieldRequired.documentType === "factura"
+                        ? "btn-green"
+                        : "btn-white"
                     }`}
                   >
                     <p
                       className={`text-center text-sm font-semibold ${
-                        documentType === "factura"
+                        fieldRequired.documentType === "factura"
                           ? "text-white"
                           : "text-slate-900"
                       }`}
@@ -100,6 +215,8 @@ export default function CheckoutPage({ params }: Props) {
                     type="text"
                     placeholder="Ej: Alfredo Pérez"
                     required
+                    value={fieldRequired.nombre}
+                    onChange={handleFieldRequired}
                   />
                   <InputForm
                     id="email"
@@ -107,6 +224,8 @@ export default function CheckoutPage({ params }: Props) {
                     type="email"
                     placeholder="Ej: contacto@empresa.cl"
                     required
+                    value={fieldRequired.email}
+                    onChange={handleFieldRequired}
                   />
                   <InputForm
                     id="telefono"
@@ -114,6 +233,8 @@ export default function CheckoutPage({ params }: Props) {
                     type="text"
                     placeholder="+56 9 1234 5678"
                     required
+                    value={fieldRequired.telefono}
+                    onChange={handleFieldRequired}
                   />
                   <InputForm
                     id="negocio"
@@ -121,11 +242,13 @@ export default function CheckoutPage({ params }: Props) {
                     type="text"
                     placeholder="Ej: AppsFly"
                     required
+                    value={fieldRequired.negocio}
+                    onChange={handleFieldRequired}
                   />
                 </div>
               </div>
 
-              {documentType === "factura" && (
+              {fieldRequired.documentType === "factura" && (
                 <div className="space-y-4 rounded-2xl border border-slate-200 bg-slate-50 p-5">
                   <div>
                     <h3 className="text-sm font-semibold text-slate-900">
@@ -144,6 +267,8 @@ export default function CheckoutPage({ params }: Props) {
                       type="text"
                       placeholder="Ej: 76.123.456-7"
                       required
+                      value={fieldRequired.rutEmpresa}
+                      onChange={handleFieldRequired}
                     />
                     <InputForm
                       id="razonSocial"
@@ -151,6 +276,8 @@ export default function CheckoutPage({ params }: Props) {
                       type="text"
                       placeholder="Ej: Empresa SpA"
                       required
+                      value={fieldRequired.razonSocial}
+                      onChange={handleFieldRequired}
                     />
                     <InputForm
                       id="giro"
@@ -158,6 +285,8 @@ export default function CheckoutPage({ params }: Props) {
                       type="text"
                       placeholder="Ej: Desarrollo de software"
                       required
+                      value={fieldRequired.giro}
+                      onChange={handleFieldRequired}
                     />
                     <InputForm
                       id="comuna"
@@ -165,6 +294,8 @@ export default function CheckoutPage({ params }: Props) {
                       type="text"
                       placeholder="Ej: Las Condes"
                       required
+                      value={fieldRequired.comuna}
+                      onChange={handleFieldRequired}
                     />
                     <div className="md:col-span-2">
                       <InputForm
@@ -173,6 +304,8 @@ export default function CheckoutPage({ params }: Props) {
                         type="text"
                         placeholder="Ej: Av. Apoquindo 1234, Oficina 602"
                         required
+                        value={fieldRequired.direccion}
+                        onChange={handleFieldRequired}
                       />
                     </div>
                   </div>
@@ -192,6 +325,8 @@ export default function CheckoutPage({ params }: Props) {
                   rows={2}
                   placeholder="Agrega cualquier observación adicional que consideres relevante para el servicio."
                   className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:ring-4 focus:ring-slate-100"
+                  value={fieldRequired.comentarios}
+                  onChange={handleFieldRequired}
                 />
               </div>
 
@@ -199,7 +334,9 @@ export default function CheckoutPage({ params }: Props) {
                 <label className="flex items-start gap-3 text-sm leading-6 text-slate-600">
                   <input
                     type="checkbox"
-                    className="mt-1 h-4 w-4 rounded border-slate-300"
+                    checked={acceptTerms}
+                    className="mt-1 h-4 w-4 rounded border-slate-300 accent-green-500"
+                    onChange={handleAcceptTerms}
                   />
                   <span>
                     Acepto recibir comunicaciones, novedades, promociones y
@@ -238,15 +375,30 @@ export default function CheckoutPage({ params }: Props) {
             </div>
 
             <div className="mt-6 space-y-3">
-              <Link
-                href={
-                  planSelected?.linkMercadoPago || "https://mpago.li/2QL6Ht9"
-                }
-                target="_blank"
-                className="inline-flex w-full btn-base btn-green"
-              >
-                Continuar al pago
-              </Link>
+              {buttonDisabled ? (
+                <div
+                  aria-disabled="true"
+                  className="inline-flex w-full btn-base btn-green cursor-not-allowed opacity-60"
+                >
+                  Continuar al pago
+                </div>
+              ) : (
+                <Link
+                  href={
+                    planSelected?.linkMercadoPago || "https://mpago.li/2QL6Ht9"
+                  }
+                  target="_blank"
+                  className="inline-flex w-full btn-base btn-green"
+                >
+                  Continuar al pago
+                </Link>
+              )}
+
+              {buttonDisabled && (
+                <p className="text-sm leading-6 text-amber-600">
+                  {missingFieldsMessage}
+                </p>
+              )}
 
               <Link href="/" className="inline-flex w-full btn-base btn-white">
                 Volver
