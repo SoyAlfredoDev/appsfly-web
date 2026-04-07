@@ -4,8 +4,8 @@ export const plans: Plan[] = [
   {
     id: "P001",
     name: "Landing Esencial®",
-    price: 170000,
-    iva: 32300,
+    price: 170,
+    iva: 32,
     highlight: false,
     results: [
       "Presencia online profesional desde el día 1",

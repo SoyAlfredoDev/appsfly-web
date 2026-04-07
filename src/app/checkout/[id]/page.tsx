@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState, useEffect, useMemo } from "react";
+import { use, useState, useMemo } from "react";
 import Link from "next/link";
 import InputForm from "@/components/ui/inputForm";
 import SelectedPlanCard from "@/components/checkout/SelectedPlanCard";
@@ -42,7 +42,8 @@ export default function CheckoutPage({ params }: Props) {
     direccion: "",
     comentarios: "",
   });
-  const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [showErrors, setShowErrors] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleFieldRequired = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -87,9 +88,9 @@ export default function CheckoutPage({ params }: Props) {
     });
   }, [fieldRequired, requiredFields]);
 
-  useEffect(() => {
-    setButtonDisabled(missingFields.length > 0);
-  }, [missingFields]);
+  const buttonDisabled = useMemo(() => {
+    return isSubmitting;
+  }, [isSubmitting]);
 
   const missingFieldsMessage = useMemo(() => {
     const labels: Record<string, string> = {
@@ -118,6 +119,61 @@ export default function CheckoutPage({ params }: Props) {
 
     return `Faltan completar ${names.length} campos obligatorios para continuar al pago.`;
   }, [missingFields]);
+
+  const handlePay = async () => {
+    try {
+      setShowErrors(true);
+
+      if (!planSelected) {
+        console.error("Plan no seleccionado");
+        return;
+      }
+
+      if (missingFields.length > 0) {
+        return;
+      }
+
+      setIsSubmitting(true);
+
+      const res = await fetch("/api/mercadopago/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: planSelected.name,
+          price: Number(planSelected.price) * 1.19,
+          quantity: 1,
+          planId: planSelected.id,
+          customer: {
+            documentType: fieldRequired.documentType,
+            name: fieldRequired.nombre,
+            email: fieldRequired.email,
+            phone: fieldRequired.telefono,
+            businessName: fieldRequired.negocio,
+            companyRut: fieldRequired.rutEmpresa,
+            companyLegalName: fieldRequired.razonSocial,
+            businessActivity: fieldRequired.giro,
+            district: fieldRequired.comuna,
+            businessAddress: fieldRequired.direccion,
+            comments: fieldRequired.comentarios,
+            acceptedTerms: acceptTerms,
+          },
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.url) {
+        throw new Error("No se pudo crear el pago");
+      }
+
+      window.location.href = data.url;
+    } catch (error) {
+      console.error("Error al iniciar pago:", error);
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <main className="min-h-screen bg-slate-100 px-4 py-4 md:px-6 lg:px-8">
@@ -375,26 +431,18 @@ export default function CheckoutPage({ params }: Props) {
             </div>
 
             <div className="mt-6 space-y-3">
-              {buttonDisabled ? (
-                <div
-                  aria-disabled="true"
-                  className="inline-flex w-full btn-base btn-green cursor-not-allowed opacity-60"
-                >
-                  Continuar al pago
-                </div>
-              ) : (
-                <Link
-                  href={
-                    planSelected?.linkMercadoPago || "https://mpago.li/2QL6Ht9"
-                  }
-                  target="_blank"
-                  className="inline-flex w-full btn-base btn-green"
-                >
-                  Continuar al pago
-                </Link>
-              )}
+              <button
+                type="button"
+                onClick={handlePay}
+                disabled={buttonDisabled}
+                className={`inline-flex w-full btn-base btn-green ${
+                  buttonDisabled ? "cursor-not-allowed opacity-70" : ""
+                }`}
+              >
+                {isSubmitting ? "Redirigiendo..." : "Pagar con Mercado Pago"}
+              </button>
 
-              {buttonDisabled && (
+              {showErrors && missingFields.length > 0 && (
                 <p className="text-sm leading-6 text-amber-600">
                   {missingFieldsMessage}
                 </p>
