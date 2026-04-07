@@ -34,7 +34,8 @@
     "src/components/sections/ServicesSection.jsx",
     "src/components/sections/HeroSection.jsx",
     "src/components/sections/PortfolioSection.tsx",
-    "src/components/sections/PricingSection.Jsx"
+    "src/components/sections/PricingSection.Jsx",
+    "src/app/checkout/[id]/page.jsx"
   ],
   "exclude": ["node_modules"]
 }

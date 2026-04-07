@@ -1,23 +1,32 @@
 "use client";
 
+import { ChangeEvent } from "react";
+
 export default function InputForm({
   id,
   label,
   type,
   placeholder,
   required = false,
+  value,
+  onChange,
 }: {
   id: string;
   label: string;
   type: string;
   placeholder?: string;
   required?: boolean;
+  value?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }) {
   return (
     <div className="relative w-full mb-2">
       <input
         id={id}
+        name={id}
         type={type}
+        value={value}
+        onChange={onChange}
         placeholder=" " // importante para el efecto
         className="peer w-full rounded-xl border border-gray-400 px-4 pt-6 pb-2 text-gray-800 
         focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent
