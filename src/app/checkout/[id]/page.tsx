@@ -135,7 +135,7 @@ export default function CheckoutPage({ params }: Props) {
 
       setIsSubmitting(true);
 
-      const res = await fetch("/api/mercadopago/create", {
+      const res = await fetch("https://appsfly.cl/api/mercadopago/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

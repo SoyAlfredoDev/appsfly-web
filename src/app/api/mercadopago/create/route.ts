@@ -78,8 +78,11 @@ export async function POST(req: Request) {
     console.error("Error creando pago:", error);
 
     return NextResponse.json(
-      { error: "Error interno del servidor" },
+      { error: "---Error interno del servidor" },
       { status: 500 },
     );
   }
+}
+export async function GET() {
+  return NextResponse.json({ error: "Método no permitido" }, { status: 405 });
 }
