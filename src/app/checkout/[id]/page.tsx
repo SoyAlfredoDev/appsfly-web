@@ -27,7 +27,6 @@ type FieldRequired = {
 export default function CheckoutPage({ params }: Props) {
   const { id: planId } = use(params);
   const planSelected = plans.find((plan) => plan.id === planId);
-
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [fieldRequired, setFieldRequired] = useState<FieldRequired>({
     documentType: "boleta",
@@ -135,7 +134,10 @@ export default function CheckoutPage({ params }: Props) {
 
       setIsSubmitting(true);
 
-      const res = await fetch("https://appsfly.cl/api/mercadopago/create", {
+      const env = process.env.NEXT_PUBLIC_ENVIRONMENT;
+      console.log("ENV: ", env);
+
+      const res = await fetch("/api/mercadopago/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
