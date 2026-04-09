@@ -62,11 +62,14 @@ export async function POST(req: Request) {
     const data = await response.json();
 
     // ✅ Validar respuesta de MercadoPago
+    console.log("DATA: 65", data);
+    console.log("RESPONSE: 66", response);
+
     if (!response.ok || !data.init_point) {
       console.error("Error MercadoPago:", data);
 
       return NextResponse.json(
-        { error: "Error creando pago en MercadoPago" },
+        { error: " -->Error creando pago en MercadoPago" },
         { status: 500 },
       );
     }
