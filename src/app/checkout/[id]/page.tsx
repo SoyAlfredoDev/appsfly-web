@@ -163,6 +163,9 @@ export default function CheckoutPage({ params }: Props) {
       });
 
       const data = await res.json();
+      console.log("DATA: 166", data);
+      console.log("RES: 167", fieldRequired);
+      console.log("PLAN: 168", planSelected);
 
       if (!res.ok || !data.url) {
         throw new Error("No se pudo crear el pago");
